@@ -1,0 +1,68 @@
+## ISSUE TOKEN
+
+to create token you may use createToken method, which returns a Laravel\Sanctum\NewAccessToken instance. API token are hased SHA256
+
+$token = $user->createToken('token-name');
+return $token->plainTextToken;
+
+## ACCESS ALL USER TOKENS
+
+foreach($user->tokens as $token){
+    //
+}
+
+## TOKEN ABILITIES
+You may pass an array of string abilities as the second argument to createToken method
+
+return $user->createToken('token_name', ['server:update'])->plainTextToken;
+
+When handeling an incoming request authenticated by Sanctum you may determine if the token has given ability using tokenCan method
+
+if($user->tokenCan('server:update')){
+    //
+}
+
+## PROTECTING ROUTES in api.php
+Route::middleware('auth:sanctum')->get('/user', function (Request $request){
+    return $request->user();
+})
+
+## REVOKE TOKENS
+// all tokens
+$user->tokens()->delete()
+
+// current token
+$request->user()->currentAccessToken()->delete();
+
+// revoke specific token
+$user->tokens()->where('id', $id)->delete();
+
+## Authenticating
+To authenticate SPA your login page should first make a request to the /sanctum/csrf-cookie route
+axios.get('/sanctum/csrf-cookie').then(response => {
+    //
+})
+
+## GETTING STARTED ISSUING API TOKENS
+to get started create route that accepts user email, pw, and devicename
+then exchange those credentials for new sanctum token. THe endpoint will return
+plain-text Sanctum token which may then be stored on mobile device and used to make
+additional API requests
+
+Route::post('sanctum/token', function(Request $request)){
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'device_name' => 'required'
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+    if(! $user || Hash::check($request->password, $user->password)){
+        throw ValidationException::withMessages([
+            'email' => ['the provided credentials are incorrect'],
+        ]);
+    }
+
+    return $user->createToken($request->device_name)->plainTextToken;
+}
+
