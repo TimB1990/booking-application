@@ -1,0 +1,89 @@
+## to create a new middleware. run for example: php artisan make:middleware CheckAge, the class will be placed in app/Http/Middleware
+
+use Closure;
+
+class CheckAge{
+    public function handle($request, Closure $next){
+        if($request->age <= 200){
+            return redirect("home");
+        }
+
+        // allows the middleware to pass
+        return $next($request);
+
+    }
+}
+
+
+## Before & after middleware
+## Whether middleware runs before or after the request depends on middleware itself
+<?php
+
+use Closure
+
+class BeforeMiddleware{
+    public function handle($request, Closure $next){
+        // perform action
+        return $next($request);
+
+    }
+}
+
+## if middleware would return its task after the request is handled by application
+Class AfterMiddleware {
+    public function handle($request, Closure $next){
+        $response = $next($request);
+
+        // perform action
+
+        return $response
+    }
+}
+
+## global middleware is to be put inside Kernel.php
+## the protected $routeMiddleware property contains all middleware included default
+## you can append to this prop, by providing 'key' and middleware class, for example
+
+'age' => \App\Http\Middleware\CheckAge::class,
+
+## use middleware in to a route
+Route::get('admin/profile', function(){
+    //
+})->middleware('auth');
+
+## multiple
+Route::get('admin/profile', function(){
+    //
+})->middleware('age','second');
+
+## or qualified name
+Route::get('admin/profile', function(){
+    //
+})->middleware(CheckAge::class);
+
+## occasionally prevent middleware from being applied to an individual route within a group
+Route::get('admin/profile', function(){
+    //
+})->withoutMiddleware([CheckAge::class]);
+
+## MIDDLEWARE PARAMETERS
+## for example a checkrole middleware
+
+use Closure;
+class CheckRole{
+    public function handle($request, Closure $next, $role){
+        if(! $request->user()->hasRole($role)){
+            // redirect ...
+        }
+    }
+
+    return $next($request);
+}
+
+## middleware parameters may be specified when defining the route by seperating the middleware name and parameters with a ':'
+## multiple parameters should be delimited by commas
+
+Route::put('post/{id}', function($id){
+    //
+})->middleware('role:editor');
+

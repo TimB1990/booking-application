@@ -91,3 +91,126 @@ Authentication: https://laravel.com/docs/8.x/authentication
 Routing: https://laravel.com/docs/8.x/routing#rate-limiting
 Sanctum: https://laravel.com/docs/8.x/sanctum
 Authorization: https://laravel.com/docs/8.x/authorization
+
+## ROUTING REGULAR EXPRESSION CONSTRAINTS
+
+Route::get('user/{name}', function($name){
+    //
+})->where('name', '[A-Za-z]+);
+
+Route::get('user/{id}', function($id){
+    //
+})->where('id',[0-9]+);
+
+Route::get('user/{id}/{name}', function($id,$name){
+    //
+})->where([
+    'id' => '[0-9]+',
+    'name' => '[a-z]+'
+]);
+
+## NAMED ROUTES
+Route::get('user/profile', function(){
+    //
+})->name('profile');
+
+# route names for controller actions
+Route::get('user/profile',[UserProfileController::class, 'show'])->name('profile');
+
+# generating URLS to named routes
+
+// generating urls
+$url = route('profile');
+
+// generating redirects
+return redirect()->route('profile')
+
+# if the named route defines parameters, you may pass those as second argument
+
+// define
+Route::get('user/{id}/profile', function($id){
+    // do something
+})->name('profile');
+
+$url = route('profile',['id' => 1]);
+
+## ADDITIONAL PARAMETERS NAMED ROUTES
+$url = route('profile', ['id' => 1, 'photos' => yes]);
+// generates: /user/1/profile?photos=yes
+
+## MIDDLEWARE
+
+# to assign middleware to all routes within a group
+Route::middleware(['first','second'])->group(function(){
+    Route::get('/', function(){
+        // uses first and second middleware
+    });
+
+    Route::get('user/profile', function(){
+        // uses first and second middleware
+    });
+});
+
+## SUBDOMAIN ROUTING
+Route::domain('{account}.myapp.com')->group(function(){
+    Route::get('user/{id}', function ($account, $id){
+        //
+    });
+});
+
+## Route prefix, may be used to prefix each route in group within given URI, for example admin
+Route::prefix('admin')->group(function(){
+    Route::get('users', function(){
+        // matches the "/admin/users" URL
+    });
+});
+
+Route::prefix('admin')->group(function(){
+    Route::get('users', function(){
+        // route assigned name admin.users
+    })->name('users');
+});
+
+## RATE LIMITER
+RateLimiter::for('global', function(Request $request){
+    return Limit::perMinute(1000);
+});
+
+#or
+
+RateLimiter::for('global', function(Request $request){
+    return Limit::perMinute(1000)->response(function(){
+        return response('custom response...', 429);
+    });
+});
+
+## Attaching Rate limiters to routes
+// limiters may be attached to routes or route groups using the throttle middleware
+Route::middleware(['throttle:uploads'])->group(function(){
+    Route::post('/audio', function(){
+        //
+    });
+
+    Route::post('/video', function(){
+        //
+    });
+});
+
+## FORM METHOD SPOOFING
+HTML fors do not support put,patch or delete actions. therefore you will need to add hidden _method field
+<form action="/foo/bar" method="POST">
+    <input type="hidden" name="_method" value="PUT"/>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+</form>
+
+# or
+
+<form action="/foo/bar" method="POST">
+    @method("PUT")
+    @csrf
+</form>
+
+## Accessing current route
+$route = Route::current();
+$name = Route::currentRouteName();
+$action = Route::currentRouteAction();

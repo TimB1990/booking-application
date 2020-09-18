@@ -28,14 +28,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = null;
 
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
+
     public function boot()
     {
         $this->configureRateLimiting();
+
+        Route::pattern('id', '[0-9]+');
 
         $this->routes(function () {
             Route::middleware('web')
