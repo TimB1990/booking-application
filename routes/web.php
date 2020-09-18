@@ -22,5 +22,5 @@ Route::get('/', function () {
     
     return redirect()->route('login')*/
 
-    return view('welcome');
+    return view('layouts.app');
 });
