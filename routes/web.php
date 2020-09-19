@@ -24,3 +24,7 @@ Route::get('/', function () {
 
     return view('layouts.app');
 });
+
+Route::get('home', function(){
+    return view('pages.home');
+});

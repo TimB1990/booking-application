@@ -18,5 +18,32 @@
     padding-bottom: 1rem;
     font-family: 'Kufam', cursive;
     color:white;
+}
 
+.menu-tile{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: baseline;
+    border: 1px solid white;
+    width: 8rem;
+    height: 8rem;
+    color:white; 
+}
+
+.menu-tile > span {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.footer{
+    margin-top: auto;
+    /*min-height: 50px;*/
+}
+
+.svg-container {
+    padding: 0.5rem;
+    width: 80px;
 }

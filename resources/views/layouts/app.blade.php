@@ -10,10 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>app</title>
+    <title>Ressys</title>
 </head>
 <body>
-    <div class="container-fluid" style="height:100vh">
+    <div class="container-fluid d-flex flex-column" style="height:100vh">
+        <!-- header -->
         <header class="row flex-column">
             <div class="col bg-dark" style="display:flex;justify-content:space-between;height:12.5vh">
                 <h2 class="logo-text"> ® RESSYS - dashboard</h2>
@@ -26,13 +27,21 @@
             </div>
             @include('includes.navbar')
         </header>
-        <main class="row h-75">
-            <section class="col-sm-2 bg-dark"><code>side menu</code></section>
-            <section class="col-sm-10 bg-secondary"><code>side menu</code></section>
+
+        <!-- main -->
+        <main class="row flex-grow-1">
+            <aside class="col-sm-12 col-md-12 col-lg-3 bg-dark">
+                @include('includes.side')
+            </aside>
+            <section class="col-sm-12 col-md-12 col-lg-9 bg-secondary">
+                @yield('content')
+            </section>
         </main>
-        <footer class="row" style="height:12.5vh">
-            <div class="col bg-dark">
-                <code>footer</code>
+
+        <!-- footer -->
+        <footer class="row">
+            <div class="col-12 footer bg-dark">
+                @include('includes.footer')
             </div>
         </footer>
     </div>
