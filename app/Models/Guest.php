@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Guest extends Model
 {
     use HasFactory;
+    public function reservation(){
+        $this->hasMany(Reservation::class);
+    }
 }

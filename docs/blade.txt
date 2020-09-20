@@ -1,0 +1,191 @@
+## return view
+Route::get('greating', function(){
+    return view('child')
+});
+
+## display data
+Route::get('greeting', function(){
+    return view('welcome', ['name' => 'Tim'])
+});
+
+Hello, {{ name }}
+
+@unless (Auth::check())
+    You are not signed in
+@endunless
+
+## check null
+@isset($records)
+    // $record is defined and is not null
+@endisset
+
+@empty($records)
+    // $records is "empty"
+@endempty
+
+## authentication directives
+## the @guest and @auth to quickly determine if current user is authenticated
+
+@auth
+    // the user is authenticated...
+@endauth
+
+@guest
+    // the user is not authenticated...
+@endguest
+
+## specified authentication guard
+
+@auth('admin')
+    // user is authenticated as admin by admin middleware
+@endauth
+
+@guest('admin')
+    // user is not authenticated
+@endguest
+
+## section directives
+## check if sectoin has content
+
+@hasSection('navigation')
+    <div class="pull-right">
+        @yield('navigation')
+    </div>
+
+    <div class="clearfix"></div>
+@endif
+
+## Section missing directive
+@sectionMissing('navigation')
+    <div class="pull-right">
+        @include('default-navigation')
+    </div>
+@endif
+
+## once directive
+## The once directive allows you to define a portion of the template that will only be evaluate once per rendering cycle.
+## this may be useful for pushing a given pice of Javascript into page's header using stacks.
+## for example, if you are rednering a given component within a loop, you may wish to only push the javascript to the header
+## the first time it is rendered
+
+@once
+    @push('scripts')
+        <script>
+            // custom js
+        </script>
+    @endpush
+@endonce
+
+## hidden CSRF token, required!
+<form method="POST" action="/profile">
+    @csrf
+</form>
+
+## Add @method directive if method = put, patch or Delete
+<form action="/foo/bar" method="POST">
+    @csrf
+    @method('PUT')
+</form>
+
+## error directive
+
+<label for="email">Your email address</label>
+
+<!-- class is inavlid on error -->
+<input type="email" id="email" class="@error('email','login') is-invalid @enderror"/>
+
+@error('eamil','login')
+<div class="alert alert-danger">
+    {{ $message }}
+</div>
+
+## components and slots provide similar benifits yo sections and layouts; however, some may find the mental model of components and slots easier to understand. There are two ways of components: class based on components and anonymous components
+
+php artisan make:component Alert
+php artisan make:component UserProfile
+
+<x-alert/>
+<x-user-profile/>
+
+## deeper nested components
+## in folder inputs
+
+<x-inputs.button>
+
+## passing data to components
+<x-alert type="error" :message="$message"/>
+
+## to define required data in component class contructor
+class Alert extends Component {
+    public $type;
+    public $message;
+
+    public function __construct($type,$message){
+        $this->type = $type
+        $this->message = $message
+    }
+
+    public function render(){
+        return view('components.alert')
+    }
+}
+
+## you can also echo variables by name
+<div class="alert alert-{{ $type }}">
+    {{ $message }}
+</div>
+
+## in case you have var $alertType
+<x-alert alert-type="danger"/>
+
+## execute public methods
+public function isSelected($option){
+    return $option === $this->selected;
+}
+
+# to execute
+<option {{$isSelected($value) ? 'selected="selected"' : '' }} value="{{ $value }}">
+    {{ $label }}
+</option>
+
+## using attributes and slots inside The Class
+## components also allow you to access the component name, attributes and slot
+## inside the class's render method. To access this data, you should
+## return a Closure from your component's render method. 
+## The Closure will receive a $data array as its only argument
+
+public function render(){
+    return function (array $data){
+        $data['componentName'];
+        $data['attributes'];
+        $data['slot'];
+
+        return '<div>Component content</div>';
+
+    };
+}
+
+## managing attributes
+https://laravel.com/docs/8.x/blade#the-once-directive -> managing attributes
+
+## slots
+Often you need to pass additional content to your component via slots
+<div class="alert alert-danger">{{ $slot }}</div>
+
+# to pass content to slot, we inject content into component like:
+<x-alert><strong>something went wrong!</strong></x-alert>
+
+## multiple slots in component (Blade class)
+
+<span class="alert-title>{{ $title }}</span>
+<div class="alert alert-danger">{{ $slot }}</div>
+
+# you may define the content of the named slot using the x-slot tag. Any content not within a x-slot tag will be passed to the component in the $slot variable
+
+<x-alert>
+    <x-slot name="title">
+        Server Error 
+    </xslot>
+    <strong>Whoops</strong> something went wrong!
+</x-alert>
+

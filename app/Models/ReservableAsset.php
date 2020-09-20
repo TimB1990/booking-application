@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ReservableAsset extends Model
 {
     use HasFactory;
+    public function accommodation(){
+        $this->belongsTo(Accommodation::class);
+    }
+
+    public function issues(){
+        $this->hasMany(Issue::class);
+    }
 }

@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/home';
 
     /**
      * If specified, this namespace is automatically applied to your controller routes.
@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             Route::prefix('api')
-                ->middleware('sanctum')
+                ->middleware('api')
                 ->group(base_path('routes/api.php'));
         });
     }

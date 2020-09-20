@@ -26,7 +26,7 @@
     justify-content: space-around;
     align-items: center;
     vertical-align: baseline;
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 1rem;
     width: 8rem;
     height: 8rem;
@@ -62,4 +62,24 @@
         min-height: 70vh;
     }
 
+}
+
+/* animations */
+@keyframes hover {
+    from {
+        background-color: transparent;
+    }
+    to{
+        background-color: white;
+        color: black;
+        opacity: 1;
+    }
+}
+
+.menu-tile:hover{
+    background-color: white;
+    cursor: pointer;
+    color: black;
+    animation-name: hover;
+    animation-duration: 1s;
 }

@@ -1,0 +1,124 @@
+## all route php files within the 'routes' directory are loaded by framework automatically
+
+## tutorial subdomains laravel
+Route::middleware('web')->domain(env('SITE_URL'))->group(function(){
+    ... all your marketing website routes go here
+});
+
+Route::middleware('web')->domain('admin.' . env('SITE_URL'))->group(function(){
+    ... all your admin portal routes go here
+});
+
+Route::middleware('api')->domain('api.' . env('SITE_URL'))->group(function(){
+    ... all your api routes go here
+});
+
+## .env config
+SITE_URL=myapp.com
+
+## make changes to hosts (linux)
+/etc/hosts --> 
+127.198.10.10 laravel.test
+127.198.10.10 api.laravel.test
+127.198.10.10 admin.laravel.test
+
+## how to do laravel subdomain routing
+## 2 primary uses, first you may want to present different sections (or diffrent apps) of the application to different subdomains
+
+Route::group(['domain' => 'api.laravel-recipes.com'], function(){
+    Route::get('/', function(){
+        // does something
+    });
+});
+
+## second you may want to set part of the subdomain as parameter, as illustrated in following example
+
+Route::group(['domain' => '{account}.laravel-recipes.com'], function(){
+    Route::get('/', function($account){
+        //
+    });
+
+    Route('/users/{id}', function($account, $id){
+        //
+    });
+});
+
+# note that any parameter for the group get passed into the grouped routes' methods as the first parameter (see $account)
+
+## namespace prefixes
+## when you are grouping routes by subdomain or route pefix, its likely their controllers have a similar PHP namespace. 
+## In the API example, all of the API routes' controllers might be under an API namespace. By using the route group namespace prefix, as shwon in the following examples, you can avoid long controller references in groups like API/ControllerA@index and API/ControllerB@index
+
+// App\Http\Controllers\ControllerA
+Route::get('/', 'ControllerA@index');
+
+// App\Http\Controllers\API\ControllerB
+Route::group(['namespace' => 'API'], function(){
+    Route::get('/', 'ControllerB@index');
+});
+
+## name prefixes
+## users/comments/5 -> served by route named users.comments.show
+
+Route::group(['as' => 'users', 'prefix' => 'users'], function(){
+    Route::group(['as' => 'comments', 'prefix' => 'comments'], function(){
+        // route name will be users.comments.show
+        Route::get('{id}', function(){
+            //
+        })->name('show');
+    });
+});
+
+## named routes
+## named routes allow the convenient generation of URLS or reidrect for specific routes. 
+
+Route::get('user/profile', function(){
+    //
+})->name('profile');
+
+## you may also specify route names for controller actions:
+Route::get('user/profile', [UserProfileController::class, 'show'])->name('profile)'
+
+## Generating URLs to named routes
+
+// generating URLs
+$url = route('profile')
+
+// generating redirects
+return redirect()->route('profile');
+
+## if the named route defines parameters
+Route::get('user/{id}/profile', function ($id){
+    //
+})->name('profile');
+
+$url = route('profile',['id' => 1]);
+
+## If you pass additional parameters in the array, those key / value pairs will automatically be added to the generated URL's query string:
+
+Route::get('user/{id}/profile', function ($id) {
+    //
+})->name('profile');
+
+$url = route('profile', ['id' => 1, 'photos' => 'yes']);
+
+// /user/1/profile?photos=yes
+
+## to assign middleware to all routes within a group
+
+Route::middleware(['first', 'second'])->group(function () {
+    Route::get('/', function () {
+        // Uses first & second middleware...
+    });
+
+    Route::get('user/profile', function () {
+        // Uses first & second middleware...
+    });
+});
+
+## subdomain routing
+Route::domain('{account}.myapp.com')->group(function(){
+    Route::get('user/{id}', function ($account, $id){
+        //
+    });
+});
