@@ -20,11 +20,15 @@ class Reservation extends Model
         return $this->belongsTo(Accommodation::class);
     }
 
+    public function reservable(){
+        return $this->morpthTo();
+    }
+
     public function meetingsRooms(){
         return $this->hasMany(MeetingRoom::class);
     }
 
-    public function reservables(){
+    public function reservableAssets(){
         return $this->hasMany(ReservableAsset::class);
     }
 

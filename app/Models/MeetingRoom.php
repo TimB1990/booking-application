@@ -15,11 +15,11 @@ class MeetingRoom extends Model
         return $this->belongsTo(Accommodation::class);
     }
 
-    public function reservation(){
-        return $this->belongsTo(Reservation::class);
+    public function reservations(){
+        return $this->morphMany('App\Models\Reservation', 'reservable');
     }
 
-    public function residences(){
-        return $this->hasMany(Residence::class);
+    public function services(){
+        return $this->morphToMany('App\Models\Service', 'serviceable');
     }
 }

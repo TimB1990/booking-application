@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Facility;
 use App\Models\MeetingRoom;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
@@ -30,5 +31,9 @@ class Accommodation extends Model
 
     public function services(){
         return $this->morphToMany('App\Models\Service', 'serviceable');
+    }
+
+    public function facilities(){
+        return $this->hasMany(Facility::class);
     }
 }
