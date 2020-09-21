@@ -19,6 +19,6 @@ class Residence extends Model
     }
 
     public function reservations(){
-        return $this->morphMany('App\Models\Reservation', 'reservable');
+        return $this->morphToMany('App\Models\Reservation', 'reservable');
     }
 }

@@ -20,16 +20,16 @@ class Reservation extends Model
         return $this->belongsTo(Accommodation::class);
     }
 
-    public function reservable(){
-        return $this->morpthTo();
+    public function residences(){
+        return $this->morphedByMany('App\Models\Residence', 'reservable');
     }
 
     public function meetingsRooms(){
-        return $this->hasMany(MeetingRoom::class);
+        return $this->morphedByMany('App\Models\MeetingRoom', 'reservable');
     }
 
     public function reservableAssets(){
-        return $this->hasMany(ReservableAsset::class);
+        return $this->morphedByMany('App\Models\ReservableAsset', 'reservable');
     }
 
     public function services(){
