@@ -39,6 +39,8 @@
             </section>
         </main>
     </div>
+
+    <!-- footer -->
     <footer>
         <div class="col-12 footer bg-dark">
             @include('includes.footer')

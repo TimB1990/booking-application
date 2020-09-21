@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Accommodation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ReservableAsset extends Model
 {
     use HasFactory;
     public function accommodation(){
-        $this->belongsTo(Accommodation::class);
+        return $this->belongsTo(Accommodation::class);
     }
 
     public function issues(){
-        $this->hasMany(Issue::class);
+        return $this->morphMany('App\Models\Issue', 'issueable');
     }
 }

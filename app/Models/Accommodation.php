@@ -2,26 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\MeetingRoom;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Accommodation extends Model
 {
     use HasFactory;
 
     public function users(){
-        $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function meetingRooms(){
-        $this->hasMany(MeetingRoom::class);
+        return $this->hasMany(MeetingRoom::class);
     }
 
     public function issues(){
-        $this->hasMany(Issue::class);
+        return $this->morphMany('App\Models\Issue', 'issueable');
     }
 
     public function reservations(){
-        $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function services(){
+        return $this->morphToMany('App\Models\Service', 'serviceable');
     }
 }

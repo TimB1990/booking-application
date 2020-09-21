@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Residence extends Model
 {
     use HasFactory;
     public function reservation(){
-        $this->belongsTo(Reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 
     public function issues(){
-        $this->hasMany(Issue::class);
+        return $this->morthMany('App\Models\Issue', 'issuable');
     }
 
     public function services(){
-        $this->hasMany(Service::class);
+        return $this->morphToMany('App\Models\Service', 'serviceable');
     }
 }

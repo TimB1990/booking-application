@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    public function residence(){
-        $this->belongsTo(Residence::class);
+    public function accommodation(){
+        return $this->morphedByMany('App\Models\Accommodation', 'serviceable');
     }
 
-    public function reservation(){
-        $this->belongsTo(Reservation::class);
+    public function residences(){
+        return $this->morphedByMany('App\Models\Residence', 'serviceable');
     }
+
 }

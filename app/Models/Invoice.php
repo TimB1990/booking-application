@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Invoice extends Model
 {
     use HasFactory;
     public function reservation(){
-        $this->hasOne(Reservation::class);
+        return $this->hasOne(Reservation::class);
     }
 }

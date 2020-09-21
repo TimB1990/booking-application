@@ -28,8 +28,8 @@
     vertical-align: baseline;
     border: 1px solid grey;
     border-radius: 1rem;
-    width: 8rem;
-    height: 8rem;
+    width: 20vw;
+    height: 20vw;
     color:white; 
 }
 
@@ -53,7 +53,13 @@
     padding: 0.5rem;
     width: 80px;
 }
-
+@media screen and (max-width:576px){
+    .content{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
 @media screen and (max-width: 992px) and (min-width:576px){
     .side{
         max-height: 30vh;

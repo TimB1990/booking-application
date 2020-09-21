@@ -1,4 +1,4 @@
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap align-items-center">
     <div class="menu-tile  m-2">
         @include('components.svg.acc')
         <span>Accommodations</span>

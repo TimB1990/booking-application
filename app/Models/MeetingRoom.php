@@ -2,21 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Residence;
+use App\Models\Reservation;
+use App\Models\Accommodation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MeetingRoom extends Model
 {
     use HasFactory;
     public function accommodation(){
-        $this->belongsTo(Accommodation::class);
+        return $this->belongsTo(Accommodation::class);
     }
 
     public function reservation(){
-        $this->belongsTo(Reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 
     public function residences(){
-        $this->hasMany(Residence::class);
+        return $this->hasMany(Residence::class);
     }
 }

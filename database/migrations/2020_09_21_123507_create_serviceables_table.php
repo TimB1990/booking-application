@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIssuesTable extends Migration
+class CreateServiceablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
+        Schema::create('serviceables', function (Blueprint $table) {
             $table->id();
-            $table->string('issue');
-            $table->bigIncrements('issueable_id');
-            $table->string('issueable_type');
-            $table->timestamps();
+            $table->bigIncrements('serviceable_id');
+            $table->bigIncrements('serviceable_type');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists('serviceables');
     }
 }

@@ -10,11 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class Issue extends Model
 {
     use HasFactory;
-    public function accommodation(){
-        $this->belongsTo(Accommodation::class);
-    }
 
-    public function reservable(){
-        $this->belongsTo(ReservableAsset::class);
+    public function issueable(){
+        return $this->morpthTo();
     }
 }
