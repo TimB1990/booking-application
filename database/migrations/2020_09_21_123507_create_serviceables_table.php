@@ -14,17 +14,11 @@ class CreateServiceablesTable extends Migration
     public function up()
     {
         Schema::create('serviceables', function (Blueprint $table) {
-            $table->id();
-            $table->bigIncrements('serviceable_id');
-            $table->bigIncrements('serviceable_type');
+            $table->bigIncrements('service_id')->constrained()->onDelete('cascade');
+            $table->morphs('serviceable');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('serviceables');

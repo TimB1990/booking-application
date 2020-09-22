@@ -15,6 +15,10 @@ class CreateFacilitiesTable extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('accomodations_id')->constrained();
+            $table->string('description');
+            $table->integer('amount_available');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

@@ -1,0 +1,58 @@
+## php artisan make:livewire component
+## in App\Http\Livewire => component controller
+## in resources\views\livewire => component blade templates
+
+# helloWorld.php
+<?php
+
+namespace App\Http\Livewire
+
+use Livewire\Component;
+
+class HelloWorld extends Component {
+    public $name = 'Jelly'
+    public $loud = false
+    public $greeting = ['hello'];
+
+    public function render(){
+        return view(livewire.hello-world)
+
+        // the public $name variable is passed in automatically, output: 'hello jelly'
+    }
+
+    public function resetName($name = 'Chico'){
+        $this->name = $name;
+
+    }
+}
+
+#hello-world.blade.php
+<div>
+    <!-- binding --> 
+    <input wire:model = "name" type="text">
+    hello {{ $name }}
+</div>
+
+## debounces input by default
+wire:model.lazy = "name" => only on click away the request is processed
+
+#hello-world.blade
+<div>
+    <input wire:model="name" type="text"/>
+    <input wire:model="loud" type="checkbox">
+    <select wire:model="greeting" multiple>
+        <option>hello</option>
+        <option>Goodbye</option>
+        <option>Adios</option>
+    </select>
+
+    {{ implode(', ' , $greeting )}} {{ $name }} @if ($loud) ! @endif
+
+    {{-- <button wire:mouseenter="resetName($event.target.innerText)">Reset Name</button> --}}
+
+    <form action="#" wire:submit.prevent="resetName('Bingo')">
+        <button>Reset Name</button>
+    </form>
+</div>
+
+<!-- or you can remove the resetname function and pass $set('name', 'Bingo') --> 

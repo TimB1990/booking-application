@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservablesTable extends Migration
+class CreateReservableCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateReservablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservables', function (Blueprint $table) {
+        Schema::create('reservable_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservation_id')->constrained();
-            $table->morphs('reservable');
-            $table->unique(['reservable_type', 'reservable_id', 'reservation_id']);
+            $table->string('name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateReservablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservables');
+        Schema::dropIfExists('reservable_categories');
     }
 }

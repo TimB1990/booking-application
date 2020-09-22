@@ -15,7 +15,12 @@ class CreateResidencesTable extends Migration
     {
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('accommodation_id')->constrained();
+            $table->string('residence_nr');
+            $table->double('area_m2',4,1);
+            $table->boolean('taken');
+            $table->string('accommodation_type');
+            $table->double('price_per_night', 5,2);
         });
     }
 

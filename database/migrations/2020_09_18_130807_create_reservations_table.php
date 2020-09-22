@@ -15,8 +15,15 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('reservable_id');
-            $table->string('reservable_type');
+            $table->foreignId('accommodation_id')->contrained();
+            $table->foreignId('guest_id')->contrained();
+            $table->dateTime('check_in', 0);
+            $table->dateTime('check_out',0);
+            $table->integer('adults');
+            $table->integer('children');
+            $table->integer('babies');
+            $table->string('comment')->nullable();
+            $table->boolean('online_payment');
             $table->timestamps();
         });
     }
