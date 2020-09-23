@@ -9,19 +9,21 @@
     <title>Ressys</title>
 </head>
 <body>
-    <div class="container">
+    <div class="flex-container">
         <header>
-            <div class="logo-text">Ressys - dashboard</div>
+            <p class="logo-text">&reg; Ressys - dashboard</p>
             <div class="profile">
                 <img src="images/photo.jpg" alt="PP">
             </div>
         </header>
         <main>
             @include('includes.menu')
+            @yield('content')
         </main>
         <footer class="footer">
             @include('includes.footer')
         </footer>
     </div>
+
 </body>
 </html>

@@ -1,47 +1,84 @@
-$dark: hsl(0, 0%, 10%);
+$dark: hsl(0, 0%, 0%);
+$darkgrey: hsl(0,0%,15%);
 
 body{
     background-color: $dark;
     color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.profile{
-    margin-top: 1rem;
-    width: auto;
-    height: 85px;
-    border: 2px solid grey;
-    border-radius: 25%;
-    overflow: hidden;
 
-    img {
+header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid red;
+    padding: 0.5rem;
+
+    .logo-text{
+        font-family: 'Kufam', cursive;
+        color:white;
+        font-size: 18px;
+    }
+
+    .profile{
         width: auto;
-        height: 85px;
+        height: 65px;
+        border: 2px solid grey;
+        border-radius: 25%;
+        overflow: hidden;
+    
+        img {
+            width: auto;
+            height: 65px;
+        }
     }
 }
 
-.logo-text{
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: 'Kufam', cursive;
-    color:white;
-}
+.menu{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: center;
+    padding: 0.5rem;
 
-.menu-tile{
-    border: 1px solid grey;
-    border-radius: 1rem;
-    color:white; 
-
-    span{
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
+    .menu-tile{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: 1px solid grey;
+        border-radius: 1rem;
+        color:white;
+        margin: 0.25rem;
+        width: 30%;
+        height: 30%;
+    
+        span{
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0.5rem;
+        }
     }
 }
 
 .svg-container {
-    padding: 0.5rem;
-    width: 80px;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    // padding: 0.5rem;
+    text-align: center;
+    border: 1px solid orange;
+    
+    svg {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
 }
 
 .footer{
@@ -53,4 +90,12 @@ body{
     text-align: center;
     clear: both;
     border: 1px solid red;
+}
+
+.content{
+    background-color: $darkgrey;
+}
+
+.flex-container{
+    border: 1px solid green;
 }
