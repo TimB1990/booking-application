@@ -1,7 +1,7 @@
 <div class="menu">
     <div class="menu-tile">
         @include('components.svg.acc')
-        <span>Accommodations</span>
+        <span>Locations</span>
     </div>
     <div class="menu-tile">
         @include('components.svg.res')
@@ -29,7 +29,7 @@
     </div>
     <div class="menu-tile">
         @include('components.svg.reservable')
-        <span>Reservables</span>
+        <span>Reservable Assets</span>
     </div>
     <div class="menu-tile">
         @include('components.svg.issue')

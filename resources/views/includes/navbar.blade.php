@@ -1,3 +1,3 @@
-<div>
-    <code>navbar</code>
-</div>
+<span>
+    navbar
+</span>

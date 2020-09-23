@@ -1,0 +1,30 @@
+@media screen and (max-width:576px){
+
+    header{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .bars {
+            border: 1px solid green;
+        }
+    }
+
+    nav{
+        display: none;
+    }
+
+    main{
+        position:relative;
+        height: 85vh;
+
+        .content{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+    }
+}
