@@ -25,7 +25,7 @@ class CreateGuestsTable extends Migration
             $table->string('street');
             $table->string('city');
             $table->date('date_of_birth');
-            $table->telephone('string');
+            $table->string('telephone');
             $table->string('email');
             $table->timestamps();
         });

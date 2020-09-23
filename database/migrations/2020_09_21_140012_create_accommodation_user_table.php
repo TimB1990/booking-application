@@ -14,10 +14,8 @@ class CreateAccommodationUserTable extends Migration
     public function up()
     {
         Schema::create('accommodation_user', function (Blueprint $table) {
-            $table->integer('accommodation_id')->unsigned()->index();
-            $table->foreign('accommodation_id')->references('id')->on('accommodations')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('accommodation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->primary(['accommodation_id', 'user_id']);
         });
     }

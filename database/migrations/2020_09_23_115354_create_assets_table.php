@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFacilitiesTable extends Migration
+class CreateAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateFacilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facilities', function (Blueprint $table) {
+        Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('accommodation_id')->constrained();
+            $table->string('name');
             $table->string('description');
-            $table->integer('amount_available');
-            $table->integer('amount');
+            $table->string('product_code')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateFacilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facilities');
+        Schema::dropIfExists('assets');
     }
 }

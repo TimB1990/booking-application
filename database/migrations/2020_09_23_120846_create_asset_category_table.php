@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservableCategoriesTable extends Migration
+class CreateAssetCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateReservableCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservable_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('asset_category', function (Blueprint $table) {
+            $table->foreignId('asset_id')->constrained();
+            $table->foreignId('category_id')->constrained();
+            $table->primary(['asset_id', 'category_id']);
+
         });
     }
 
@@ -26,6 +28,6 @@ class CreateReservableCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservable_categories');
+        Schema::dropIfExists('asset_category');
     }
 }

@@ -16,7 +16,7 @@ class CreateInvoiceLinesTable extends Migration
         Schema::create('invoice_lines', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')->contrained();
-            $table->foreign('reservable_ref')->references('id')->on('reservables');
+            $table->foreignId('reservable_id')->contrained();
             $table->string('description');
             $table->integer('quantity');
             $table->double('cost',8,2);

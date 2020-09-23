@@ -16,7 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservation_id')->contrained();
-            $table->int('invoice_no');
+            $table->integer('invoice_no');
             $table->date('invoice_date');
             $table->date('due_date');
             $table->double('subtotal',8,2);
