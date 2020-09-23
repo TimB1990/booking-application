@@ -1,103 +1,55 @@
-.profile{
-    margin-top: 1rem;
-    width: auto;
-    height: 85px;
-    border: 2px solid grey;
-    border-radius: 25%;
-    overflow: hidden;
+body {
+  background-color: #1a1a1a;
+  color: white;
 }
 
-.profile > img {
-    width: auto;
-    height: 85px;
+.profile {
+  margin-top: 1rem;
+  width: auto;
+  height: 85px;
+  border: 2px solid grey;
+  border-radius: 25%;
+  overflow: hidden;
 }
 
-.logo-text{
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: 'Kufam', cursive;
-    color:white;
+.profile img {
+  width: auto;
+  height: 85px;
 }
 
-.menu-tile{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    vertical-align: baseline;
-    border: 1px solid grey;
-    border-radius: 1rem;
-    width: 20vw;
-    height: 20vw;
-    color:white; 
+.logo-text {
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: "Kufam", cursive;
+  color: white;
 }
 
-.menu-tile > span {
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
+.menu-tile {
+  border: 1px solid grey;
+  border-radius: 1rem;
+  color: white;
 }
 
-.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-    clear: both;
+.menu-tile span {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .svg-container {
-    padding: 0.5rem;
-    width: 80px;
-}
-@media screen and (max-width:576px){
-    .content{
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-}
-@media screen and (max-width: 992px) and (min-width:576px){
-    .side{
-        max-height: 30vh;
-    }
-    .content{
-        min-height: 70vh;
-    }
-
+  padding: 0.5rem;
+  width: 80px;
 }
 
-/* animations */
-@-webkit-keyframes hover {
-    from {
-        background-color: transparent;
-    }
-    to{
-        background-color: white;
-        color: black;
-        opacity: 1;
-    }
-}
-@keyframes hover {
-    from {
-        background-color: transparent;
-    }
-    to{
-        background-color: white;
-        color: black;
-        opacity: 1;
-    }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  clear: both;
+  border: 1px solid red;
 }
 
-.menu-tile:hover{
-    background-color: white;
-    cursor: pointer;
-    color: black;
-    -webkit-animation-name: hover;
-            animation-name: hover;
-    -webkit-animation-duration: 1s;
-            animation-duration: 1s;
-}

@@ -1,0 +1,56 @@
+$dark: hsl(0, 0%, 10%);
+
+body{
+    background-color: $dark;
+    color: white;
+}
+
+.profile{
+    margin-top: 1rem;
+    width: auto;
+    height: 85px;
+    border: 2px solid grey;
+    border-radius: 25%;
+    overflow: hidden;
+
+    img {
+        width: auto;
+        height: 85px;
+    }
+}
+
+.logo-text{
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: 'Kufam', cursive;
+    color:white;
+}
+
+.menu-tile{
+    border: 1px solid grey;
+    border-radius: 1rem;
+    color:white; 
+
+    span{
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.svg-container {
+    padding: 0.5rem;
+    width: 80px;
+}
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    clear: both;
+    border: 1px solid red;
+}
