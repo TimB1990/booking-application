@@ -39,5 +39,22 @@
         </footer>
     </div>
 
+    <script>
+        var menu = document.getElementById('menu-grid')
+        var cc = document.getElementById('cc')
+
+        window.onclick = function(event){
+            if(event.target == menu || event.target == cc){
+                menu.classList.add("hide")
+            }
+        }
+
+        function toggle(id){
+            var element = document.getElementById(id);
+            element.classList.toggle("hide");
+        }
+    </script>
+
+
 </body>
 </html>

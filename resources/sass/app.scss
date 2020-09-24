@@ -1,6 +1,4 @@
-$dark: hsl(0, 0%, 0%);
-$darkgrey: hsl(0,0%,10%);
-
+@import 'variables';
 @import 'app_small';
 @import 'app_medium';
 @import 'app_large';
@@ -16,58 +14,19 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-
-    .logo-text{
-        font-family: 'Kufam', cursive;
-        color:white;
-        font-size: 18px;
-    }
+    height: $headerHeight;
+    align-items: center;
 
     .profile{
         width: auto;
-        height: 65px;
+        height: 80px;
         border: 2px solid grey;
         border-radius: 25%;
         overflow: hidden;
     
         img {
             width: auto;
-            height: 65px;
-        }
-    }
-}
-
-.menu{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: baseline;
-    justify-content: space-evenly;
-    padding: 0.5rem;
-
-    .menu-tile{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        border: 1px solid grey;
-        border-radius: 1rem;
-        color:white;
-        margin: 0.25rem;
-        width: 26%;
-        height: 26%;
-        padding: 0.5rem;
-
-        &:hover{
-            background-color: white;
-            cursor: pointer;
-            color: black;
-            animation-name: hover;
-            animation-duration: 1s;
-        }
-    
-        span{
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
+            height: 80px;
         }
     }
 }
@@ -91,19 +50,30 @@ header{
 }
 
 .footer{
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
+    height: $footerHeight;
     color: white;
     text-align: center;
     clear: both;
-    border: 1px solid red;
-    z-index: 1;
+    background-color: $darkgrey;
+    border: 1px solid $dark;
+
+    div{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+
+    }
 }
 
 .content{
     background-color: $darkgrey;
+    height: 100vh - ($headerHeight + $footerHeight);
     
     &__container{
         padding: 1rem;

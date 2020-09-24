@@ -1,4 +1,4 @@
-<div class="menu">
+<div id="menu-grid" class="menu">
     <div class="menu-tile">
         @include('components.svg.acc')
         <span>Locations</span>

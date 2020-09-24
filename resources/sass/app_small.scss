@@ -1,4 +1,4 @@
-@media screen and (max-width:576px){
+@media screen and (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md) {
 
     header{
         display: flex;
@@ -6,7 +6,14 @@
         align-items: center;
 
         .bars {
-            border: 1px solid green;
+            border: 1px solid white;
+            padding:0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .logo-text{
+            color:white;
+            font-size: 18px;
         }
     }
 
@@ -14,15 +21,49 @@
         display: none;
     }
 
+    .menu{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: baseline;
+        justify-content: space-evenly;
+        padding: 0.5rem;
+    
+        .menu-tile{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            border: 1px solid grey;
+            border-radius: 1rem;
+            color:white;
+            margin: 0.25rem;
+            width: 26%;
+            height: 26%;
+            padding: 0.5rem;
+    
+            &:hover{
+                background-color: white;
+                cursor: pointer;
+                color: black;
+                animation-name: hover;
+                animation-duration: 1s;
+            }
+        
+            span{
+                text-align: center;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    }
+
     main{
         position:relative;
-        height: 85vh;
-
+        height: 100vh - ($headerHeight + $footerHeight);
+        
         .content{
             position: absolute;
             left: 0;
             top: 0;
-            height: 100%;
             width: 100%;
         }
 
