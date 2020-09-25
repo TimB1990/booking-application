@@ -1,16 +1,122 @@
-@media screen and (min-width: $layout-breakpoint-lg){
-    header{
-        .bars{
+@media screen and (min-width: $layout-breakpoint-lg) {
+
+    .flex-container{
+        border: 1px solid purple;
+    }
+
+    header {
+        .bars {
             display: none;
         }
     }
 
-    nav{
+    nav {
         display: flex;
+        flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
         background-color: $darkgrey;
         padding: 1rem;
         border: 1px solid grey;
+        height: $navHeight;
+
+        #menu-toggle {
+            display: none;
+        }
+
+        ul {
+            display: inline-block;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+            li {
+                float: left;
+                border: 1px solid white;
+                border-radius: 0.5rem;
+                margin-right: 1rem;
+
+                a {
+                    display: inline-block;
+                    color: white;
+                    text-align: center;
+                    font-size: 1rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: white;
+                        cursor: pointer;
+                        color: black;
+                        animation-name: hover;
+                        animation-duration: 1s;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    main {
+        position: relative;
+        height: 100vh - ($headerHeight + $footerHeight + $navHeight);
+
+        .menu {
+            position:absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            padding-bottom: 30%;
+            overflow: hidden;
+            display: flex;
+            justify-content: left;
+            align-items: inherit;
+            width: $lg-menu-width;
+            border: 1px solid yellow;
+            background-color: $darkgrey;
+            clear: both;
+
+            .menu-tile {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                border: 1px solid grey;
+                border-radius: 1rem;
+                color: white;
+                margin: 0.25rem;
+                width: 6rem;
+                height: 7rem;
+                padding: 0.5rem;
+
+                &:hover {
+                    background-color: white;
+                    cursor: pointer;
+                    color: black;
+                    animation-name: hover;
+                    animation-duration: 1s;
+                }
+
+                span {
+                    text-align: center;
+                    font-size: 12x;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .content {
+            position: absolute;
+            padding: 1rem;
+            border: 1px solid pink;
+            left: $lg-menu-width + 1;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
     }
 }

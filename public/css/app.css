@@ -59,7 +59,7 @@
 
   main {
     position: relative;
-    height: 85vh;
+    height: 91.5vh;
   }
 
   main .content {
@@ -86,7 +86,7 @@
     background-color: #1a1a1a;
     padding: 1rem;
     border: 1px solid grey;
-    height: 5vh;
+    height: 3vh;
   }
 
   nav #menu-toggle {
@@ -124,8 +124,11 @@
     display: inline-block;
     color: white;
     text-align: center;
-    font-size: 1.25rem;
-    padding: 16px 20px;
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-decoration: none;
   }
 
@@ -141,10 +144,10 @@
 
   main {
     position: relative;
-    height: 80vh;
+    height: 88.5vh;
   }
 
-  .menu {
+  main .menu {
     position: absolute;
     top: 0;
     left: 0;
@@ -157,7 +160,7 @@
     background-color: #1a1a1a;
   }
 
-  .menu .menu-tile {
+  main .menu .menu-tile {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -170,7 +173,7 @@
     padding: 0.5rem;
   }
 
-  .menu .menu-tile:hover {
+  main .menu .menu-tile:hover {
     background-color: white;
     cursor: pointer;
     color: black;
@@ -180,29 +183,140 @@
             animation-duration: 1s;
   }
 
-  .menu .menu-tile span {
+  main .menu .menu-tile span {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
   }
 
-  .hide {
+  main .content {
+    padding: 1rem;
+  }
+
+  main .hide {
     display: none;
   }
 }
 
 @media screen and (min-width: 992px) {
+  .flex-container {
+    border: 1px solid purple;
+  }
+
   header .bars {
     display: none;
   }
 
   nav {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     background-color: #1a1a1a;
     padding: 1rem;
     border: 1px solid grey;
+    height: 3vh;
+  }
+
+  nav #menu-toggle {
+    display: none;
+  }
+
+  nav ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  nav ul li {
+    float: left;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  nav ul li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  nav ul li a:hover {
+    background-color: white;
+    cursor: pointer;
+    color: black;
+    -webkit-animation-name: hover;
+            animation-name: hover;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+  }
+
+  main {
+    position: relative;
+    height: 88.5vh;
+  }
+
+  main .menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-bottom: 30%;
+    overflow: hidden;
+    display: flex;
+    justify-content: left;
+    align-items: inherit;
+    width: 20%;
+    border: 1px solid yellow;
+    background-color: #1a1a1a;
+    clear: both;
+  }
+
+  main .menu .menu-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    color: white;
+    margin: 0.25rem;
+    width: 6rem;
+    height: 7rem;
+    padding: 0.5rem;
+  }
+
+  main .menu .menu-tile:hover {
+    background-color: white;
+    cursor: pointer;
+    color: black;
+    -webkit-animation-name: hover;
+            animation-name: hover;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+  }
+
+  main .menu .menu-tile span {
+    text-align: center;
+    font-size: 12x;
+    font-weight: bold;
+  }
+
+  main .content {
+    position: absolute;
+    padding: 1rem;
+    border: 1px solid pink;
+    left: 21%;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 }
 
@@ -215,14 +329,14 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  height: 10vh;
+  padding: 0.75rem;
+  height: 6vh;
   align-items: center;
 }
 
 header .profile {
   width: auto;
-  height: 80px;
+  height: 6vh;
   border: 2px solid grey;
   border-radius: 25%;
   overflow: hidden;
@@ -230,7 +344,7 @@ header .profile {
 
 header .profile img {
   width: auto;
-  height: 80px;
+  height: 6vh;
 }
 
 .svg-container {
@@ -255,7 +369,7 @@ header .profile img {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 5vh;
+  height: 2.5vh;
   color: white;
   text-align: center;
   clear: both;
@@ -271,18 +385,14 @@ header .profile img {
   width: 100%;
 }
 
-.content {
-  background-color: #1a1a1a;
-  height: 85vh;
-}
+/*.content{
+    background-color: $darkgrey;
+    height: 100vh - ($headerHeight + $footerHeight);
 
-.content__container {
-  padding: 1rem;
-}
-
-.flex-container {
-  border: 1px solid green;
-}
+    &__container{
+        padding: 1rem;
+    }
+}*/
 
 @-webkit-keyframes hover {
   from {

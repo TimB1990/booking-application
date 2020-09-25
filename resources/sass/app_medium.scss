@@ -16,7 +16,7 @@
         background-color: $darkgrey;
         padding: 1rem;
         border: 1px solid grey;
-        height: 5vh;
+        height: $navHeight;
 
         #menu-toggle {
             border: 1px solid white;
@@ -49,8 +49,11 @@
                     display: inline-block;
                     color: white;
                     text-align: center;
-                    font-size: 1.25rem;
-                    padding: 16px 20px;
+                    font-size: 1rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
                     text-decoration: none;
 
                     &:hover {
@@ -65,52 +68,56 @@
         }
     }
 
-    main{
-        position:relative;
+    main {
+        position: relative;
         height: 100vh - ($headerHeight + $footerHeight + $navHeight);
-    }
 
-    .menu {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-flow: row wrap;
-        align-items: baseline;
-        justify-content: left;
-        padding: 0.5rem;
-        border: 1px solid grey;
-        background-color: $darkgrey;
-
-        .menu-tile {
+        .menu {
+            position: absolute;
+            top: 0;
+            left: 0;
             display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            border: 1px solid grey;
-            border-radius: 1rem;
-            color: white;
-            margin: 0.25rem;
-            width: 26% * ($layout-breakpoint-sm / $layout-breakpoint-md);
-            height: 26%;
+            flex-flow: row wrap;
+            align-items: baseline;
+            justify-content: left;
             padding: 0.5rem;
+            border: 1px solid grey;
+            background-color: $darkgrey;
 
-            &:hover {
-                background-color: white;
-                cursor: pointer;
-                color: black;
-                animation-name: hover;
-                animation-duration: 1s;
-            }
+            .menu-tile {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                border: 1px solid grey;
+                border-radius: 1rem;
+                color: white;
+                margin: 0.25rem;
+                width: 26% * ($layout-breakpoint-sm / $layout-breakpoint-md);
+                height: 26%;
+                padding: 0.5rem;
 
-            span {
-                text-align: center;
-                font-size: 14px;
-                font-weight: bold;
+                &:hover {
+                    background-color: white;
+                    cursor: pointer;
+                    color: black;
+                    animation-name: hover;
+                    animation-duration: 1s;
+                }
+
+                span {
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
             }
         }
-    }
 
-    .hide{
-        display: none;
+        .content{
+            padding: 1rem;
+        }
+
+        .hide {
+            display: none;
+        }
     }
 }

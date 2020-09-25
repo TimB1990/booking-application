@@ -13,20 +13,20 @@ body{
 header{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0.75rem;
     height: $headerHeight;
     align-items: center;
 
     .profile{
         width: auto;
-        height: 80px;
+        height: $headerHeight;
         border: 2px solid grey;
         border-radius: 25%;
         overflow: hidden;
     
         img {
             width: auto;
-            height: 80px;
+            height: $headerHeight;
         }
     }
 }
@@ -71,18 +71,14 @@ header{
     }
 }
 
-.content{
+/*.content{
     background-color: $darkgrey;
     height: 100vh - ($headerHeight + $footerHeight);
     
     &__container{
         padding: 1rem;
     }
-}
-
-.flex-container{
-    border: 1px solid green;
-}
+}*/
 
 // general animations
 @keyframes hover {
