@@ -1,94 +1,10 @@
 @import 'variables';
-@import 'app_small';
-@import 'app_medium';
-@import 'app_large';
+@import './login/login';
+@import './dash/dash';
 
 body{
     background-color: $dark;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid grey;
-}
-
-
-header{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem;
-    height: $headerHeight;
-    align-items: center;
-
-    .profile{
-        width: auto;
-        height: $headerHeight;
-        border: 2px solid grey;
-        border-radius: 25%;
-        overflow: hidden;
-    
-        img {
-            width: auto;
-            height: $headerHeight;
-        }
-    }
-}
-
-.svg-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    text-align: center;
-    
-    svg {
-        position: absolute;
-        height: 80%;
-        width: 80%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-}
-
-.footer{
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: $footerHeight;
-    color: white;
-    text-align: center;
-    clear: both;
-    background-color: $darkgrey;
-    border-top: 1px solid grey;
-
-    div{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-
-    }
-}
-
-/*.content{
-    background-color: $darkgrey;
-    height: 100vh - ($headerHeight + $footerHeight);
-    
-    &__container{
-        padding: 1rem;
-    }
-}*/
-
-// general animations
-@keyframes hover {
-    from {
-        background-color: transparent;
-    }
-    to{
-        background-color: white;
-        color: black;
-        opacity: 1;
-    }
 }

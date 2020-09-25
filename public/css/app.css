@@ -1,3 +1,8 @@
+.login-container {
+  color: white;
+  background-color: black;
+}
+
 @media screen and (min-width: 360px) and (max-width: 576px) {
   header {
     display: flex;
@@ -325,13 +330,6 @@
   }
 }
 
-body {
-  background-color: black;
-  color: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border: 1px solid grey;
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -422,5 +420,12 @@ header .profile img {
     color: black;
     opacity: 1;
   }
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid grey;
 }
 

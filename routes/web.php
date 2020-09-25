@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function(){
+    return view('layouts.login');
+});
+
+Route::get('/dashboard', function () {
 
     /*if(Auth::check()){
         return redirect()->route('dashboard')
@@ -22,9 +26,9 @@ Route::get('/', function () {
     
     return redirect()->route('login')*/
 
-    return view('layouts.app');
+    return view('layouts.dashboard');
 });
 
-Route::get('home', function(){
+/*Route::get('home', function(){
     return view('pages.home');
-});
+});*/
