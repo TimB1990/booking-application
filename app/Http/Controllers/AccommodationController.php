@@ -3,81 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accommodation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AccommodationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct(){
+        $this->middleware('auth:sanctum');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index(Request $request)
+    {
+
+        $user = User::find($request->query('user'));
+
+
+        $accommodations = $user->accommodations;
+
+        $data = [
+            'name' => $user->name,
+            'roles' => $user->roles,
+            'accommodations' => []
+        ];
+
+        foreach ($accommodations as $acc){
+            array_push($data['accommodations'], $acc);
+        }
+
+        return response()->json($data);
+
+    }
+
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Accommodation  $accommodation
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Accommodation $accommodation)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Accommodation  $accommodation
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Accommodation $accommodation)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Accommodation  $accommodation
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Accommodation $accommodation)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Accommodation  $accommodation
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Accommodation $accommodation)
     {
         //

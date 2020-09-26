@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccommodationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function(){
-    return view('layouts.login');
-});
+Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
 
-    /*if(Auth::check()){
+    if(Auth::check()){
         return redirect()->route('dashboard')
     }
     
-    return redirect()->route('login')*/
+    return redirect()->route('login')
 
     return view('layouts.dashboard');
-});
-
-/*Route::get('home', function(){
-    return view('pages.home');
-});*/
+});/*

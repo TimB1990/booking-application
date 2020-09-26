@@ -29,15 +29,15 @@
             @endif
 
             <!-- login form -->
-            <form class="login-container-form" action="#" method="POST">
+            <form class="login-container-form" action="/login" method="POST">
                 @csrf
                 <div class="input-container">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="name" required tabindex="1" autofocus>
+                    <input name="username" type="text" id="name" placeholder="username" required tabindex="1" autofocus>
                 </div>
                 <div class="input-container">
                     <i class="fa fa-lock"></i>
-                    <input type="password" id="pass" required tabindex="2">
+                    <input name="password" type="password" id="pass" placeholder="password" required tabindex="2">
                 </div>
 
                 <div class="form-submit">

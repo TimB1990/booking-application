@@ -16,6 +16,7 @@ class CreateAccommodationsTable extends Migration
         Schema::create('accommodations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('domain');
             $table->string('location');
             $table->string('description');
             $table->integer('stars');
