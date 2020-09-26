@@ -14,6 +14,7 @@
             <!-- header -->
             <div class="login-container-header">
                 <p>&reg; Ressys - login</p>
+                <p>Employee</p>
             </div>
 
             <!-- error -->
@@ -30,7 +31,6 @@
             <!-- login form -->
             <form class="login-container-form" action="#" method="POST">
                 @csrf
-                <p>Login as employee:</p>
                 <div class="input-container">
                     <i class="fa fa-user"></i>
                     <input type="text" id="name" required tabindex="1" autofocus>
