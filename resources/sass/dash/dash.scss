@@ -63,25 +63,3 @@ header{
 
     }
 }
-
-/*.content{
-    background-color: $darkgrey;
-    height: 100vh - ($headerHeight + $footerHeight);
-    
-    &__container{
-        padding: 1rem;
-    }
-}*/
-
-// general animations
-
-@keyframes hover {
-    from {
-        background-color: transparent;
-    }
-    to{
-        background-color: white;
-        color: black;
-        opacity: 1;
-    }
-}

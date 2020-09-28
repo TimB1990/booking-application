@@ -1,0 +1,13 @@
+        <ul class="welcome-message-roles">
+            @foreach($roles as $role)
+            <li class="welcome-message-roles-role"><b>{{ $role->name }}</b></li>
+            @endforeach
+        </ul>
+
+
+
+        Route::middleware('auth:sanctum')->group(function(){
+    Route::get('{accomodation}/dashboard', function($accommodation){
+        return response()->view('layouts.dashboard', $accommodation, 200);
+    });
+});

@@ -19,6 +19,8 @@ use App\Http\Controllers\AccommodationController;
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 
+
+
 /*Route::get('/dashboard', function () {
 
     if(Auth::check()){

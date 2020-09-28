@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Ressys</title>
 </head>
+
 <body>
     <div class="flex-container">
 
@@ -16,15 +18,16 @@
         <header>
             <div class="bars">
                 <i style="font-size:28px;" class="fa fa-bars"></i>
-            </div>    
+            </div>
             <p class="logo-text">&reg; Ressys - dashboard</p>
+            <p>@if(isset($accommodation)){{ $accommodation }}@endif</p>
             <div class="profile">
                 <img src="images/photo.jpg" alt="PP">
-            </div>         
+            </div>
         </header>
 
         <nav>
-            @include('includes.navbar')  
+            @include('includes.navbar')
         </nav>
 
         <!-- main -->
@@ -57,4 +60,5 @@
 
 
 </body>
+
 </html>

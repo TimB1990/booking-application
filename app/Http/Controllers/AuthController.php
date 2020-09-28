@@ -11,7 +11,7 @@ use App\Http\Controllers\AccommodationController;
 class AuthController extends Controller
 {
     public function showLogin(){
-        return view('layouts.login');
+        return view('pages.login-user');
     }
 
     public function login(Request $request){
@@ -31,7 +31,7 @@ class AuthController extends Controller
 
         $token = $user->createToken($request->username)->plainTextToken;
 
-        $response = Http::withToken($token)->get(env('APP_URL','') . '/api/accommodations?user='. $user->id);
+        $response = Http::withToken($token)->get(env('APP_URL','') . '/api/accommodations/login?user='. $user->id);
 
         return $response;
 

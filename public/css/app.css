@@ -1,3 +1,27 @@
+@-webkit-keyframes hover {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: white;
+    color: black;
+    opacity: 1;
+  }
+}
+
+@keyframes hover {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: white;
+    color: black;
+    opacity: 1;
+  }
+}
+
 @media screen and (min-width: 360px) and (max-width: 576px) {
   .login {
     padding: 0.5rem;
@@ -49,6 +73,12 @@
     padding-left: 35rem;
     padding-right: 35rem;
     padding-top: 5rem;
+  }
+
+  .login-container-accommodations-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
   }
 }
 
@@ -131,6 +161,55 @@
 
 .login-container-form .input-container input:focus {
   border: 1px solid white;
+}
+
+.login-container-accommodations {
+  border-top: 1px solid grey;
+  font-size: 1.125rem;
+}
+
+.login-container-accommodations-list a {
+  display: block;
+  margin: 2rem;
+  padding: 1.25rem;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.login-container-accommodations-list a:hover {
+  background-color: white;
+  cursor: pointer;
+  color: black;
+  -webkit-animation-name: hover;
+          animation-name: hover;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.login-container-accommodations .welcome-message {
+  margin: 2rem;
+  font-size: 1.25rem;
+}
+
+.login-container-accommodations .welcome-message-roles {
+  list-style: none;
+}
+
+.login-container-accommodations .welcome-message-roles-role {
+  color: green;
+}
+
+.login-container-accommodations .select-message {
+  margin: 2rem;
+  font-size: 1.25rem;
+}
+
+.login-container-accommodations .admin-message a {
+  color: white;
 }
 
 @media screen and (min-width: 360px) and (max-width: 576px) {
@@ -517,39 +596,6 @@ header .profile img {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-}
-
-/*.content{
-    background-color: $darkgrey;
-    height: 100vh - ($headerHeight + $footerHeight);
-
-    &__container{
-        padding: 1rem;
-    }
-}*/
-
-@-webkit-keyframes hover {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: white;
-    color: black;
-    opacity: 1;
-  }
-}
-
-@keyframes hover {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: white;
-    color: black;
-    opacity: 1;
-  }
 }
 
 body {

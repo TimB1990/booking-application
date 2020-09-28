@@ -15,9 +15,9 @@ class AccommodationSeeder extends Seeder
     public function run()
     {
         $acc = Accommodation::create([
-            'name' => 'Pullmann Hotel',
-            'domain' => 'pullmann',
-            'location' => 'Pull City',
+            'name' => 'Puckmann Hotel',
+            'domain' => 'puckmann',
+            'location' => 'Puck City',
             'description' => 'Great hotel in the middle of central district',
             'stars' => 3,
             'guests_rating' => '7.5',
