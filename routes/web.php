@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccommodationController;
@@ -18,14 +19,16 @@ use App\Http\Controllers\AccommodationController;
 
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth')->group(function(){
-    Route::get('dashboard', function(){
+Route::middleware('auth')->group(function () {
+
+    Route::get('login/{user_id}/accommodations/view', [
+        AccommodationController::class,
+        'indexByAuth'
+    ])->name('user_accs');
+
+    Route::get('dashboard', function () {
         return view('pages.home');
     })->name('dashboard');
 });
-
-
-
-
-

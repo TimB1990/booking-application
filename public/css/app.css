@@ -147,7 +147,8 @@
   top: 0;
 }
 
-.login-container-form .input-container input {
+.login-container-form .input-container input,
+.login-container-form .input-container select {
   font-size: 1.25rem;
   outline: none;
   border: 1px solid #b3b3b3;
@@ -159,57 +160,9 @@
   text-indent: 2rem;
 }
 
-.login-container-form .input-container input:focus {
+.login-container-form .input-container input:focus,
+.login-container-form .input-container select:focus {
   border: 1px solid white;
-}
-
-.login-container-accommodations {
-  border-top: 1px solid grey;
-  font-size: 1.125rem;
-}
-
-.login-container-accommodations-list a {
-  display: block;
-  margin: 2rem;
-  padding: 1.25rem;
-  border: 1px solid grey;
-  border-radius: 1rem;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1.25rem;
-}
-
-.login-container-accommodations-list a:hover {
-  background-color: white;
-  cursor: pointer;
-  color: black;
-  -webkit-animation-name: hover;
-          animation-name: hover;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-}
-
-.login-container-accommodations .welcome-message {
-  margin: 2rem;
-  font-size: 1.25rem;
-}
-
-.login-container-accommodations .welcome-message-roles {
-  list-style: none;
-}
-
-.login-container-accommodations .welcome-message-roles-role {
-  color: green;
-}
-
-.login-container-accommodations .select-message {
-  margin: 2rem;
-  font-size: 1.25rem;
-}
-
-.login-container-accommodations .admin-message a {
-  color: white;
 }
 
 @media screen and (min-width: 360px) and (max-width: 576px) {

@@ -28,8 +28,18 @@ class AuthController extends Controller
 
         $credentials = $request->only('username', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended('dashboard');
+            return redirect()->intended('login/' . Auth::id() . '/accommodations/view');
         }
+
+        return redirect()->back()->withErrors([
+            'invalid_login' => 'invalid credentials!'
+        ]);
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
+
+        // maybe implement functionality to log out other devices as well, therefore user must provide password (see docs)
+    }
 }

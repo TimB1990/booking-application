@@ -17,5 +17,8 @@
         <input type="submit"></button>
         <a href="#">I forgot my password</a>
     </div>
+    @error('invalid_login')
+        <p style="color:red;"><b>Invalid Credentials, please try again</b></p>
+    @enderror
 </form>
 @endsection
