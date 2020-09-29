@@ -16,10 +16,9 @@ use App\Http\Controllers\AccommodationController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('accommodations/{user}', [AccommodationController::class, 'index']);
 
 Route::get('accommodations/login', [AccommodationController::class, 'listAfterLogin']);
-Route::get('accommodations/{id}/login', [AccommodationController::class, 'retrieveAfterLogin']);
+
 
 
 

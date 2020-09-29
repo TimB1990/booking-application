@@ -9,46 +9,8 @@ use Illuminate\Http\Request;
 class AccommodationController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:sanctum');
+        $this->middleware('auth');
     }
-
-    // after Login
-    public function listAfterLogin(Request $request)
-    {
-
-        $user = User::find($request->query('user'));
-        $token = $request->bearerToken();
-
-
-        $accommodations = $user->accommodations;
-
-        $data = [
-            'name' => $user->name,
-            'token' => $token,
-            'roles' => $user->roles,
-            'accommodations' => []
-        ];
-
-        foreach ($accommodations as $acc){
-            array_push($data['accommodations'], [
-                'id' => $acc->id, 
-                'domain' => $acc->domain, 
-                'name' => $acc->name
-            ]);
-        }
-
-        // return view('pages.select-acc')->with(compact($data));
-        return response()->view('pages.select-acc', $data, 200);
-
-    }
-
-    public function retrieveAfterLogin(Request $request){
-
-        // should response Http::withToken 
-
-    }
-
-    // regular CRUD
 
     public function index(){
 

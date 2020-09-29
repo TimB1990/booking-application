@@ -9,8 +9,8 @@
     <p class="select-message">Please select one of the accommodations below to access its dashboard: </p>
     <div class="login-container-accommodations-list">
         @foreach($accommodations as $acc)
-        <a href="{{ $acc['domain'] . '/dashboard' }}">
-            {{ $acc['name'] }}
+    <a href="#">
+            name
         </a>
         @endforeach
 
@@ -18,14 +18,11 @@
 
     @foreach($roles as $role)
     @if($role->abbr === 'A')
-    <p class="admin-message">You have been assigned {{ $role->name}} privileges.<br> Click the link below to perform
-        actions regarding
-        multiple assigned accommodations:<br>
+    <p class="admin-message">
         <a href="#">Admin Dashboard</a>
     </p>
     @endif
     @endforeach
-    {{ $token }}
 </div>
 
 @endsection

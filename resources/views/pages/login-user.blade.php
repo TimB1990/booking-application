@@ -2,7 +2,7 @@
 
 @section('login-views')
 <!-- login form -->
-<form class="login-container-form" action="/login" method="POST">
+<form class="login-container-form" action="#" method="POST">
     @csrf
     <div class="input-container">
         <i class="fa fa-user"></i>

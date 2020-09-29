@@ -1,0 +1,58 @@
+class AuthController extends Controller
+{
+    public function showLogin()
+    {
+        return view('pages.login-user');
+    }
+
+    public function login(Request $request)
+    {
+
+        // set csrf token
+        $this->csrfToken();
+
+
+        // validate request
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required']
+        ]);
+
+        // check if credentials are valid
+        $user = User::where('username', $request->username)->first();
+
+
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'username' => ['The provided credentials are incorrent.']
+            ]);
+            // return redirect()->back()->withErrors(['error' => 'The provided credentials are incorrect']);
+        }
+
+        $token = $user->createToken($request->username)->plainTextToken;
+
+        $response = Http::withToken($token)->get(env('APP_URL','') . '/api/accommodations/login?user='. $user->id);
+        return $response;
+    }
+
+    private function csrfToken()
+    {
+        return Http::get(env('APP_URL', '') . '/sanctum/csrf-token');
+    }
+}
+
+
+        // validate request
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required']
+        ]);
+
+        $credentials = $request->only('username, password');
+
+        if(Auth::attempt($credentials)){
+            return redirect()->intended('dashboard'. [
+                'accommodation' => 'puckmann'
+            ]);
+        }

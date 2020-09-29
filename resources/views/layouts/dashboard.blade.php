@@ -20,7 +20,6 @@
                 <i style="font-size:28px;" class="fa fa-bars"></i>
             </div>
             <p class="logo-text">&reg; Ressys - dashboard</p>
-            <p>@if(isset($accommodation)){{ $accommodation }}@endif</p>
             <div class="profile">
                 <img src="images/photo.jpg" alt="PP">
             </div>
