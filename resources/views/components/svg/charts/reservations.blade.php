@@ -1,0 +1,19 @@
+<div class="single-chart">
+    <svg viewBox="0 0 128 128" class="circular-chart orange">
+        <path
+        class="circle-bg"
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+          fill="none"
+          stroke="#444";
+          stroke-width="1";
+        />
+        <path class="circle"
+        stroke-dasharray="50, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      </svg>
+</div>

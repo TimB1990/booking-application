@@ -67,10 +67,11 @@ header{
 
 .content{
 
+    display: flex;
+    flex-flow: row wrap;
+    // justify-content: space-evenly;
+
     table{
-        border: 1px solid grey;
-        border-radius: 1rem;
-        padding: 1.5rem;
         font-size: 1.25rem;
 
         tr{

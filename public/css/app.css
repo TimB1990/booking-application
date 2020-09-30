@@ -549,10 +549,12 @@ header .profile img {
   width: 100%;
 }
 
+.content {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .content table {
-  border: 1px solid grey;
-  border-radius: 1rem;
-  padding: 1.5rem;
   font-size: 1.25rem;
 }
 
@@ -565,6 +567,57 @@ header .profile img {
 .content table tr td:nth-child(even) {
   text-align: left;
   max-width: 400px;
+}
+
+.charts-panel {
+  flex-grow: 1;
+  border: 1px solid blue;
+}
+
+.single-chart {
+  margin: 1rem;
+  height: 40%;
+  border: 1px solid grey;
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+/*.circular-chart {
+    border: 1px solid blue;
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+}*/
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  -webkit-animation: progress 1s ease-out forwards;
+          animation: progress 1s ease-out forwards;
+}
+
+@-webkit-keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.orange .circle {
+  stroke: #ff9f00;
 }
 
 body {
