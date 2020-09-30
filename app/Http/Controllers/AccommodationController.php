@@ -28,11 +28,12 @@ class AccommodationController extends Controller
         // return to view with retrieved data
         return view('pages.select-acc', [
             'name' => $name,
+            'roles' => $user->roles,
             'accommodations' => $accommodations
         ]);
     }
 
-    public function index(){
+    public function index(){ 
 
     }
 
@@ -44,6 +45,15 @@ class AccommodationController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function showByDomain($domain){
+        $accommodation = Accommodation::where('domain', $domain)->get();
+        return view('pages.home', [
+            'accommodation' => $accommodation,
+            'user' => Auth::user(),
+            'title' => 'Home'
+        ]);
     }
 
 

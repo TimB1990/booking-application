@@ -1,3 +1,4 @@
+<span class="page-title">{{ $title }}</span>
 <ul>
     <li>
         <a href="#">Settings</a>

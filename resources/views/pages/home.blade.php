@@ -1,9 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div id="cc" class="content">
-    <div class="content__container">
-        <code>this is home</code>
-    </div> 
+<div class="content">
+    @include('components.home.info-table')
 </div>
 @endsection

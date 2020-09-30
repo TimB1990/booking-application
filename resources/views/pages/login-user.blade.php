@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-submit">
-        <input type="submit"></button>
+        <input type="submit">
         <a href="#">I forgot my password</a>
     </div>
     @error('invalid_login')

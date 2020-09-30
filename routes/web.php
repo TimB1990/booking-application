@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
         'indexByAuth'
     ])->name('user_accs');
 
-    Route::get('dashboard', function () {
-        return view('pages.home');
-    })->name('dashboard');
+    Route::post('login/redirect', [AuthController::class, 'redirect']);
+
+    Route::get('{domain}/dashboard', [AccommodationController::class, 'showByDomain'])->name('dashboard');
 });

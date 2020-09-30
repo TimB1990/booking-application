@@ -27,7 +27,7 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('username', 'password');
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             return redirect()->intended('login/' . Auth::id() . '/accommodations/view');
         }
 
@@ -36,7 +36,27 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(){
+    public function redirect(Request $request)
+    {
+        // retrieve accommodation domain
+        $domain = $request->input('domain');
+
+        // check if accommodation exists and is assigned to authenticated user
+        $accommodations = Auth::user()->accommodations;
+        foreach ($accommodations as $acc) {
+            if ($domain == $acc->domain) {
+                // redirect to dashboard
+                return redirect()->route('dashboard', [
+                    'domain' => $domain,
+                ]);
+            }
+        }
+
+        return redirect('login');
+    }
+
+    public function logout()
+    {
         Auth::logout();
         return redirect('login');
 

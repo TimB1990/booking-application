@@ -1,7 +1,7 @@
-<div id="menu-grid" class="menu">
-    <div class="menu-tile">
+<div id="menu-grid" class="menu hide">
+<div class="menu-tile">
         @include('components.svg.acc')
-        <span>Locations</span>
+        <span>Home</span>
     </div>
     <div class="menu-tile">
         @include('components.svg.res')

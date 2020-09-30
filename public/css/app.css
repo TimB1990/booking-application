@@ -74,12 +74,6 @@
     padding-right: 35rem;
     padding-top: 5rem;
   }
-
-  .login-container-accommodations-list {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
 }
 
 .form-submit input[type=submit] {
@@ -163,6 +157,10 @@
 .login-container-form .input-container input:focus,
 .login-container-form .input-container select:focus {
   border: 1px solid white;
+}
+
+.login-container-form .input-container select {
+  text-indent: 0;
 }
 
 @media screen and (min-width: 360px) and (max-width: 576px) {
@@ -549,6 +547,24 @@ header .profile img {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+}
+
+.content table {
+  border: 1px solid grey;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.content table tr td {
+  overflow: wrap;
+  padding: 0.75rem;
+  border: 1px solid grey;
+}
+
+.content table tr td:nth-child(even) {
+  text-align: left;
+  max-width: 400px;
 }
 
 body {
