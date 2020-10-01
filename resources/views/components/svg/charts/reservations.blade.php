@@ -16,5 +16,6 @@
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       </svg>
-      <span class="single-chart-description">Reservations</span>
+      <span class="single-chart-description">Accommodations</span>
+      <span class="single-chart-status">0 / 18</span>
 </div>
