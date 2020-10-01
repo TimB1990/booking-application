@@ -69,10 +69,13 @@ header{
 
     display: flex;
     flex-flow: row wrap;
-    // justify-content: space-evenly;
+    justify-content: center;
 
     table{
         font-size: 1.25rem;
+        width: 100%;
+        border: 1px solid pink;
+        padding: 1rem;
 
         tr{
             td{
@@ -87,4 +90,15 @@ header{
             }
         }
     }
+}
+
+.charts-panel{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid orange;
+    margin-top: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }

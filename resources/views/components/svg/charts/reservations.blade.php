@@ -1,5 +1,5 @@
 <div class="single-chart">
-    <svg viewBox="0 0 128 128" class="circular-chart orange">
+    <svg viewBox="0 0 40 40" class="circular-chart orange">
         <path
         class="circle-bg"
           d="M18 2.0845
@@ -16,4 +16,5 @@
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       </svg>
+      <span class="single-chart-description">Reservations</span>
 </div>

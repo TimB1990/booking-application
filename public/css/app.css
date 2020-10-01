@@ -363,6 +363,10 @@
   main .hide {
     display: none;
   }
+
+  .charts-panel {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -488,6 +492,10 @@
     bottom: 0;
     border: none;
   }
+
+  .charts-panel {
+    width: auto;
+  }
 }
 
 header {
@@ -552,10 +560,14 @@ header .profile img {
 .content {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 .content table {
   font-size: 1.25rem;
+  width: 100%;
+  border: 1px solid pink;
+  padding: 1rem;
 }
 
 .content table tr td {
@@ -570,25 +582,38 @@ header .profile img {
 }
 
 .charts-panel {
-  flex-grow: 1;
-  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid orange;
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .single-chart {
+  position: relative;
+  border: 1px solid red;
+  width: 225px;
+  height: 225px;
   margin: 1rem;
-  height: 40%;
-  border: 1px solid grey;
-  padding: 1rem;
-  flex-grow: 1;
 }
 
-/*.circular-chart {
-    border: 1px solid blue;
-    display: block;
-    margin: 10px auto;
-    max-width: 80%;
-    max-height: 250px;
-}*/
+.single-chart-description {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  transform: translate(-50%, 0);
+}
+
+.circular-chart {
+  position: absolute;
+  border: 1px solid blue;
+  left: 10%;
+}
 
 .circle-bg {
   fill: none;
