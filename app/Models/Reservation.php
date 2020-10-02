@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Reservation extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
     public function accommodation(){
         return $this->belongsTo(Accommodation::class);
     }

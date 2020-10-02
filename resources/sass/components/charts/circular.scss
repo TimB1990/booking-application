@@ -11,10 +11,10 @@
         position: absolute;
         bottom: 0;
         left: 50%;
-        padding: 0.5rem;
         font-size: 1.25rem;
-        // border: 1px solid yellow;
+        width: 100%;
         transform: translate(-50%,0);
+        text-align: center;
     }
 
     &-status{
@@ -41,7 +41,7 @@
 
 .circle-bg {
     fill: none;
-    stroke: #eee;
+    stroke: darkgrey;
     stroke-width: 3.8;
 }
 

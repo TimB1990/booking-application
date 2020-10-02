@@ -17,5 +17,5 @@
       />
       </svg>
       <span class="single-chart-description">Accommodations</span>
-      <span class="single-chart-status">0 / 18</span>
+    <span class="single-chart-status">0 / {{ $accommodation[0]->residences}}</span>
 </div>

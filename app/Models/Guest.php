@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Guest extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    
     public function reservation(){
         return $this->hasMany(Reservation::class);
     }

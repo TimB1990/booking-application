@@ -67,6 +67,8 @@ header{
 
 .content{
 
+    // table with accommodation information
+
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -74,8 +76,8 @@ header{
     table{
         font-size: 1.25rem;
         width: 100%;
-        border: 1px solid pink;
-        padding: 1rem;
+        border-spacing: 0.5rem;
+        border-collapse: seperate;
 
         tr{
             td{
