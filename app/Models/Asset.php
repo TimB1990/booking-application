@@ -12,6 +12,10 @@ class Asset extends Model
     public function issues(){
         return $this->morphMany('App\Models\Issue', 'issueable');
     }
+
+    public function reservations(){
+        return $this->morphToMany('App\Models\Reservation', 'reservable');
+    }
     
     public function categories(){
         return $this->belongsToMany(Category::class);

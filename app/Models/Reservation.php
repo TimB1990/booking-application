@@ -30,8 +30,8 @@ class Reservation extends Model
         return $this->morphedByMany('App\Models\MeetingRoom', 'reservable');
     }
 
-    public function reservableAssets(){
-        return $this->morphedByMany('App\Models\ReservableAsset', 'reservable');
+    public function assets(){
+        return $this->morphedByMany('App\Models\Asset', 'reservable');
     }
 
     public function services(){

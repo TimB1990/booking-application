@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Facility;
+use App\Models\Residence;
 use App\Models\MeetingRoom;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,10 @@ class Accommodation extends Model
 
     public function users(){
         return $this->belongsToMany(User::class);
+    }
+
+    public function residences(){
+        return $this->hasMany(Residence::class);
     }
 
     public function meetingRooms(){
