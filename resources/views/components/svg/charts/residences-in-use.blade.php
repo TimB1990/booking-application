@@ -16,6 +16,6 @@
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       </svg>
-      <span class="single-chart-description">Accommodations</span>
+      <span class="single-chart-description">Residences</span>
     <span class="single-chart-status">0 / {{ $accommodation[0]->residences}}</span>
 </div>

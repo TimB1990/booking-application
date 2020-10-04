@@ -216,10 +216,12 @@
             animation-duration: 1s;
   }
 
-  .menu .menu-tile span {
+  .menu .menu-tile span a {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
   }
 
   main {
@@ -350,10 +352,12 @@
             animation-duration: 1s;
   }
 
-  main .menu .menu-tile span {
+  main .menu .menu-tile span a {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
   }
 
   main .content {
@@ -477,10 +481,12 @@
             animation-duration: 1s;
   }
 
-  main .menu .menu-tile span {
+  main .menu .menu-tile span a {
     text-align: center;
-    font-size: 12x;
+    font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
   }
 
   main .content {

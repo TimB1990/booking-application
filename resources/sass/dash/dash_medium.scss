@@ -108,9 +108,13 @@
                 }
 
                 span {
-                    text-align: center;
-                    font-size: 14px;
-                    font-weight: bold;
+                    a{
+                        text-align: center;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-decoration: none;
+                        color: white;
+                    }
                 }
             }
         }

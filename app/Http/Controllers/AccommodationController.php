@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AccommodationController extends Controller
 {
@@ -47,8 +48,9 @@ class AccommodationController extends Controller
         //
     }
 
-    public function showByDomain($domain){
+    public function showByDomain(Request $request, $domain){
         $accommodation = Accommodation::where('domain', $domain)->get();
+        
         return view('pages.home', [
             'accommodation' => $accommodation,
             'user' => Auth::user(),

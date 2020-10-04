@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\AccommodationController;
 
 /*
@@ -17,18 +18,23 @@ use App\Http\Controllers\AccommodationController;
 |
 */
 
-Route::get('login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
-Route::get('logout', [AuthController::class, 'logout']);
+Route::middleware('web')->group(function () {
 
-Route::middleware('auth')->group(function () {
+    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('login', [AuthController::class, 'login']);
+    Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::get('login/{user_id}/accommodations/view', [
-        AccommodationController::class,
-        'indexByAuth'
-    ])->name('user_accs');
+    Route::middleware('auth')->group(function () {
 
-    Route::post('login/redirect', [AuthController::class, 'redirect']);
+        Route::get('login/{user_id}/accommodations/view', [
+            AccommodationController::class,
+            'indexByAuth'
+        ])->name('user_accs');
 
-    Route::get('{domain}/dashboard', [AccommodationController::class, 'showByDomain'])->name('dashboard');
+        Route::post('login/redirect', [AuthController::class, 'redirect']);
+
+        Route::get('{domain}/dashboard', [AccommodationController::class, 'showByDomain'])->name('dashboard');
+
+        Route::get('{domain}/dashboard/residences', [ResidenceController::class, 'index']);
+    });
 });

@@ -1,38 +1,40 @@
 <div id="menu-grid" class="menu hide">
 <div class="menu-tile">
         @include('components.svg.menu.acc')
-        <span>Home</span>
+        <span>
+            <a href="">Home</a>
+        </span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.res')
-        <span>Residences</span>
+    <span><a href="{{ $accommodation[0]->domain . '/dashboard/residences'}}"></a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.conference')
-        <span>Meeting Rooms</span>
+        <span><a href="">Meeting Rooms</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reserv')
-        <span>Reservations</span>
+        <span><a href="">Reservations</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.guest')
-        <span>Guests</span>
+        <span><a href="">Guests</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.invoice')
-        <span>Invoices</span>
+        <span><a href="">Invoices</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.service')
-        <span>Services</span>
+        <span><a href="">Services</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reservable')
-        <span>Reservable Assets</span>
+        <span><a href="">Reservable Assets</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.issue')
-        <span>Issues</span>
+        <span><a href="">Issues</a></span>
     </div>
 </div>
