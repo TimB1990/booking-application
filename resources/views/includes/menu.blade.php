@@ -2,16 +2,16 @@
 <div class="menu-tile">
         @include('components.svg.menu.acc')
         <span>
-            <a href="">Home</a>
+        <a href="{{ '/' . $accommodation[0]->domain . '/dashboard'}}">Home</a>
         </span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.res')
-    <span><a href="{{ $accommodation[0]->domain . '/dashboard/residences'}}"></a></span>
+    <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/residences'}}">Residences</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.conference')
-        <span><a href="">Meeting Rooms</a></span>
+    <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/meeting-rooms'}}">Meeting Rooms</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reserv')

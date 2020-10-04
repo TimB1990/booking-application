@@ -15,7 +15,13 @@ class CreateMeetingRoomsTable extends Migration
     {
         Schema::create('meeting_rooms', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('accommodation_id')->constrained();
+            $table->integer('room_nr');
+            $table->string('alias')->nullable();
+            $table->integer('max_seats');
+            $table->double('area_m2', 4, 1);
+            $table->enum('status', ['free','taken','unavailable']);
+            $table->double('price_per_hour', 5,2);
         });
     }
 

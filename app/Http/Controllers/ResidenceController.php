@@ -16,7 +16,7 @@ class ResidenceController extends Controller
         $acc_id = $accommodation[0]->id;
 
         // retrieve residences by retrieved id
-        $residences = Residence::where('accommodation_id', $acc_id)->get();
+        $residences = Residence::where('accommodation_id', $acc_id)->orderBy('residence_nr', 'asc')->get();
 
         // return view with residences data
         return view('pages.residences', [

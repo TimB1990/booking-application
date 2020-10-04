@@ -4,80 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Models\MeetingRoom;
 use Illuminate\Http\Request;
+use App\Models\Accommodation;
 
 class MeetingRoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index($domain)
     {
-        //
+        // get accommodation id
+        $accommodation = Accommodation::where('domain', $domain)->get();
+        $acc_id = $accommodation[0]->id;
+
+        // get meeting rooms
+        $meetingRooms = MeetingRoom::where('accommodation_id', $acc_id)->get();
+
+        // return view with meetingrooms data
+        return view('pages.meeting-rooms', [
+            'accommodation' => $accommodation,
+            'meetingRooms' => $meetingRooms,
+            'title' => 'Meeting rooms'
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MeetingRoom  $meetingRoom
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(MeetingRoom $meetingRoom)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MeetingRoom  $meetingRoom
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(MeetingRoom $meetingRoom)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MeetingRoom  $meetingRoom
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, MeetingRoom $meetingRoom)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\MeetingRoom  $meetingRoom
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(MeetingRoom $meetingRoom)
     {
         //

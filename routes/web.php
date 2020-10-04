@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResidenceController;
+use App\Http\Controllers\MeetingRoomController;
 use App\Http\Controllers\AccommodationController;
 
 /*
@@ -26,15 +27,25 @@ Route::middleware('web')->group(function () {
 
     Route::middleware('auth')->group(function () {
 
-        Route::get('login/{user_id}/accommodations/view', [
-            AccommodationController::class,
-            'indexByAuth'
-        ])->name('user_accs');
+        // login prefix
+        Route::group(['prefix' => 'login'], function () {
+            
+            Route::get('{user_id}/accommodations/view', [
+                AccommodationController::class,
+                'indexByAuth'
+            ])->name('user_accs');
 
-        Route::post('login/redirect', [AuthController::class, 'redirect']);
+            Route::post('/redirect', [AuthController::class, 'redirect']);
+        });
 
-        Route::get('{domain}/dashboard', [AccommodationController::class, 'showByDomain'])->name('dashboard');
+        // domain dashboard prefix
+        Route::group(['prefix' => '{domain}/dashboard'], function () {
 
-        Route::get('{domain}/dashboard/residences', [ResidenceController::class, 'index']);
+            Route::get('/', [AccommodationController::class, 'showByDomain'])->name('dashboard');
+
+            Route::get('/residences', [ResidenceController::class, 'index']);
+
+            Route::get('/meeting-rooms', [MeetingRoomController::class, 'index']);
+        });
     });
 });

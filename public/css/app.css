@@ -563,10 +563,23 @@ header .profile img {
   width: 100%;
 }
 
+.taken {
+  background-color: red;
+}
+
+.free {
+  background-color: #1a1a1a;
+}
+
 .content {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+
+.content .res-record {
+  border: 1px solid white;
+  padding: 1rem;
 }
 
 .content table {
