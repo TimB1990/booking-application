@@ -10,30 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class GuestSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        // Guest::factory()->create();
-
-        // Reservation::factory()->hasResidences(1, ['taken' => true])->create();
-
-        // WRONG!!
-        Reservation::factory()->forGuest()->create()->each(function( Reservation $reservation){
+        Reservation::factory()->forGuest()->create()->each(function (Reservation $reservation) {
             DB::table('reservables')->insert([
                 'reservation_id' => $reservation->id,
                 'reservable_type' => Residence::class,
-                'reservable_id' => 1
+                'reservable_id' => Residence::pluck('id')->random()
             ]);
-
         });
-
-
-
-
-
     }
 }
