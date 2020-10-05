@@ -17,6 +17,7 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('accommodation_id')->contrained();
             $table->foreignId('guest_id')->contrained();
+            // $table->foreignId('invoice_id')->constrained()->nullable();
             $table->dateTime('check_in', 0);
             $table->dateTime('check_out',0);
             $table->integer('adults');

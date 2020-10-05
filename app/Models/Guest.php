@@ -11,7 +11,9 @@ class Guest extends Model
     use HasFactory;
     protected $guarded = [];
     
-    public function reservation(){
+    public function reservations(){
         return $this->hasMany(Reservation::class);
     }
+
+
 }

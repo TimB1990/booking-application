@@ -4,80 +4,62 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Models\Accommodation;
+use Illuminate\Database\Eloquent\Builder;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index($domain)
     {
-        //
+        
+        // retrieve accommodation information
+        $accommodation = Accommodation::where('domain', $domain)->get();
+        $acc_id = $accommodation[0]->id;
+
+        // retrieve invoice that belong to reservations on current accommodation
+        $invoices = Invoice::whereHas('reservation', function (Builder $query) use ($acc_id) {
+            $query->where('accommodation_id', $acc_id);
+        })->get();
+
+        // return view with guests data
+        return view('pages.invoices', [
+            'accommodation' => $accommodation,
+            'guests' => $invoices,
+            'title' => 'invoices'
+        ]);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Invoice $invoice)
     {
         //

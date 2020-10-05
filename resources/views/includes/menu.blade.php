@@ -15,26 +15,26 @@
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reserv')
-        <span><a href="">Reservations</a></span>
+    <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations'}}">Reservations</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.guest')
-        <span><a href="">Guests</a></span>
+        <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/guests'}}">Guests</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.invoice')
-        <span><a href="">Invoices</a></span>
+        <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/invoices'}}">Invoices</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.service')
-        <span><a href="">Services</a></span>
+        <span><a href="">Services **</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reservable')
-        <span><a href="">Reservable Assets</a></span>
+        <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/assets'}}">Assets</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.issue')
-        <span><a href="">Issues</a></span>
+        <span><a href="">Issues **</a></span>
     </div>
 </div>

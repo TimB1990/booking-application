@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Asset;
 use App\Models\Facility;
 use App\Models\Residence;
 use App\Models\MeetingRoom;
@@ -40,5 +41,9 @@ class Accommodation extends Model
 
     public function facilities(){
         return $this->hasMany(Facility::class);
+    }
+
+    public function assets(){
+        return $this->hasMany(Asset::class);
     }
 }

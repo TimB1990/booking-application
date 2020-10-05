@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Asset extends Model
 {
     use HasFactory;
+    public function accommodation(){
+        return $this->belongsTo('App\Models\Accommodation');
+    }
+    
     public function issues(){
         return $this->morphMany('App\Models\Issue', 'issueable');
     }

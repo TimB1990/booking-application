@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\MeetingRoomController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AccommodationController;
 
 /*
@@ -46,6 +50,14 @@ Route::middleware('web')->group(function () {
             Route::get('/residences', [ResidenceController::class, 'index']);
 
             Route::get('/meeting-rooms', [MeetingRoomController::class, 'index']);
+
+            Route::get('/reservations', [ReservationController::class, 'index']);
+
+            Route::get('/guests', [GuestController::class, 'index']);
+
+            Route::get('/invoices', [InvoiceController::class, 'index']);
+
+            Route::get('/assets', [AssetController::class, 'index']);
         });
     });
 });

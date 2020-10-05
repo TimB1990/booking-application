@@ -15,6 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('accommodation_id')->constraint();
             $table->string('name');
             $table->string('description');
             $table->string('product_code')->nullable();
