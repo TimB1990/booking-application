@@ -21,10 +21,10 @@
     </tr>
     <tr>
         <td>residences</td>
-        <td>{{ $accommodation[0]->residences }}</td>
+        <td>{{ $accommodation[0]->amount_residences }}</td>
     </tr>
     <tr>
         <td>meeting rooms</td>
-        <td>{{ $accommodation[0]->meeting_rooms }}</td>
+        <td>{{ $accommodation[0]->amount_meeting_rooms }}</td>
     </tr>
 </table>

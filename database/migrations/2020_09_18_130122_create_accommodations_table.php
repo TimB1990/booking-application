@@ -21,8 +21,8 @@ class CreateAccommodationsTable extends Migration
             $table->string('description');
             $table->integer('stars');
             $table->double('guests_rating',2,1);
-            $table->integer('residences');
-            $table->integer('meeting_rooms');
+            $table->integer('amount_residences');
+            $table->integer('amount_meeting_rooms');
             $table->timestamps();
         });
     }

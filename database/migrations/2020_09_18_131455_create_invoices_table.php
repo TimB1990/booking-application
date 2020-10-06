@@ -16,9 +16,9 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservation_id')->contrained();
-            $table->integer('invoice_no');
-            $table->date('invoice_date');
-            $table->date('due_date');
+            // $table->integer('invoice_no');
+            $table->date('invoice_date')->nullable();
+            $table->date('due_date')->nullable();
             $table->double('subtotal',8,2);
             $table->double('tax_9', 8,2);
             $table->double('tax_21',8,2);
@@ -28,11 +28,6 @@ class CreateInvoicesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('invoices');

@@ -17,5 +17,5 @@
       />
       </svg>
       <span class="single-chart-description">Residences</span>
-    <span class="single-chart-status">0 / {{ $accommodation[0]->residences}}</span>
+    <span class="single-chart-status">0 / {{ $accommodation[0]->amount_residences}}</span>
 </div>

@@ -20,8 +20,8 @@ class AccommodationFactory extends Factory
             'description' => 'Great hotel in the middle of central district',
             'stars' => 3,
             'guests_rating' => '7.5',
-            'residences' => 18,
-            'meeting_rooms' => 2
+            'amount_residences' => 18,
+            'amount_meeting_rooms' => 2
         ];
     }
 }

@@ -2,28 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Invoice;
 use App\Models\Reservation;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReservationFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Reservation::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
-        // $currentDate = date('Y-m-d');
-        // $checkinDate = $this->faker->dateTimeBetween($currentDate, strtotime('+1 week', strtotime($currentDate)));
 
         $d = strtotime("+1 week");
         $checkinDate = date("Y-m-d", $d);
@@ -33,6 +22,7 @@ class ReservationFactory extends Factory
         return [
             'accommodation_id' => 1,
             'guest_id' => 0,
+            'invoice_id' => 0,
             'check_in' => $checkinDate,
             'check_out' => $checkoutDate,
             'adults' => 2,

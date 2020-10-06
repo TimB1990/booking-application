@@ -11,7 +11,7 @@ class Invoice extends Model
 {
     use HasFactory;
     public function reservation(){
-        return $this->hasOne(Reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 
     public function invoiceLines(){
