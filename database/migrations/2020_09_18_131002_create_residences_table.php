@@ -18,7 +18,7 @@ class CreateResidencesTable extends Migration
             $table->foreignId('accommodation_id')->constrained();
             $table->integer('residence_nr');
             $table->double('area_m2',4,1);
-            $table->boolean('taken');
+            $table->enum('status', ['taken','free','unavailable']);
             $table->string('type');
             $table->double('price_per_night', 5,2);
             $table->timestamps();

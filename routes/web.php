@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\MeetingRoomController;
@@ -58,6 +59,10 @@ Route::middleware('web')->group(function () {
             Route::get('/invoices', [InvoiceController::class, 'index']);
 
             Route::get('/assets', [AssetController::class, 'index']);
+
+            Route::get('/issues', [IssueController::class, 'index']);
+
+            Route::get('/services', [ServiceController::class, 'index']);
         });
     });
 });

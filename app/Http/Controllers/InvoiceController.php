@@ -22,10 +22,13 @@ class InvoiceController extends Controller
             $query->where('accommodation_id', $acc_id);
         })->get();
 
-        // return view with guests data
+        // retrieve invoice lines
+        
+
+        // return view with invoices data
         return view('pages.invoices', [
             'accommodation' => $accommodation,
-            'guests' => $invoices,
+            'invoices' => $invoices,
             'title' => 'invoices'
         ]);
 

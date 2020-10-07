@@ -35,7 +35,7 @@ class GuestSeeder extends Seeder
             $residence = Residence::find($pivot_data['reservable_id']);
 
             // set taken to true
-            $residence->taken = true;
+            $residence->status = 'taken';
 
             // save residence to DB
             $residence->save();

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Issue has polymorphic relationship with either residence, reservable or accommodation
+// Issue has polymorphic relationship with either residence, asset or accommodation
 
 class Issue extends Model
 {

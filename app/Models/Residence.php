@@ -16,7 +16,7 @@ class Residence extends Model
     }
 
     public function issues(){
-        return $this->morphMany('App\Models\Issue', 'issuable');
+        return $this->morphMany('App\Models\Issue', 'issueable');
     }
 
     public function services(){

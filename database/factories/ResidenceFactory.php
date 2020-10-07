@@ -30,7 +30,7 @@ class ResidenceFactory extends Factory
             'accommodation_id' => 1,
             'residence_nr' => $this->faker->unique()->numberBetween(1,18),
             'area_m2' => $area_m2,
-            'taken' => false,
+            'status' => 'free',
             'type' => $type,
             'price_per_night' => $price_per_night
         ];

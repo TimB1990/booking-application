@@ -1,0 +1,62 @@
+Laravel Fortify
+
+laravel new Fortify
+
+composer require laravel/fortify
+php artisan vendor:poubluich --provider="laravel\\Fortify\\FortifyServiceProvider
+
+in FortifyServiceProvider there you have in boot() possibilities
+CreateNewUser::class, UpdateUserProfileInformation::class, UpdateUserPassword::class, ResetUserPassword::class
+
+config/app.php
+scroll to providers put in:
+App\Providers\FortifyServiceProvider
+
+php artisan:route
+
+## in fortify.php you can set default for username (default is 'email')
+'username' => 'email', 
+
+Homepath: redirected to: 'home' => RouteServiceProvider::HOME --> you can change this to the route you want to redirect user to
+
+you can comment out features:
+
+'features' => [
+    Features::registration(), // leaves login route too
+    Features::resetPasswords(),
+    Features::emailVerification(),
+    Features::updateProfileInformation(),
+    Features::updatePasswords(),
+    Features::twoFactorAuthentication([
+        'confirmPassword' => true
+    ])
+]
+
+php artisan migrate
+
+## FortifyServiceProvider in boot()
+Fortify::loginView(function(){
+    return view ('auth.login');
+});
+
+Fortify::registerView(function(){
+    return view('auth.register')
+});
+
+## installing bootstrap, scss
+
+npm install --save-dev bootstrap jquery popper.js sass sass-loader
+
+-- resources/scss/app.scss
+@import '~bootstrap/scss/bootstrap'
+
+--app.js
+window.$ = window.jQuery = require('jquery');
+window.Popper = require('popper.js).default;
+
+webpack.mix.js
+get rid of postscss append: .sass('resources/scss/app.scss','public/css')
+
+
+## views
+create auth folder, inside there create login.blade.php, register.blade.php, template.blade.php
