@@ -13,13 +13,29 @@ class ServiceController extends Controller
     {
         // retrieve id of domain
         $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
 
-        // retrieve residences by retrieved id
-        $services = Service::where('accommodation_id', $acc_id)->get();
+        $services = [
+            'accommodation' => [],
+            'residences' => [],
+            'meetingrooms' => []
+        ];
 
+        // retrieve services of each polymorphic relation and push them to services. 
+        $services['accommodation'] = $accommodation->services;
+
+        $residences = $accommodation->residences;
+        foreach($residences as $res){
+            array_push($services['residences'], $res->services);
+        }
+
+        $meetingRooms = $accommodation->meetingRooms;
+        foreach($meetingRooms as $meetingRoom){
+            array_push($services['meetingrooms'], $meetingRoom->services);
+        }
+
+        
         // return view with residences data
-        return view('pages.residences', [
+        return view('pages.services', [
             'accommodation' => $accommodation,
             'services' => $services,
             'title' => 'services'
