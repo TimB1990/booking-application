@@ -14,26 +14,46 @@ class ServiceController extends Controller
         // retrieve id of domain
         $accommodation = Accommodation::where('domain', $domain)->get();
 
+        // get collection of serviceable types that belong to accommodation
+        $residences = $accommodation[0]->residences;
+        $meetingRooms = $accommodation[0]->meetingRooms;
+
         $services = [
             'accommodation' => [],
             'residences' => [],
             'meetingrooms' => []
         ];
 
+
+
         // retrieve services of each polymorphic relation and push them to services. 
-        $services['accommodation'] = $accommodation->services;
+        if($accommodation[0]->services->count() > 0){
+            $services['accommodation'] = $accommodation->services;
+        }
+        else{
+            $services['accommodation'] = ['message' => 'This accommodation has no pending service requests'];
+        }
 
-        $residences = $accommodation->residences;
+              
         foreach($residences as $res){
-            array_push($services['residences'], $res->services);
+            if($res->services->count() > 0){
+                array_push($services['residences'], $res->services);
+            }
+            else{
+                array_push($services['residences'], ['message' => 'This residence has no pending service requests'] );
+            }     
         }
 
-        $meetingRooms = $accommodation->meetingRooms;
+       
         foreach($meetingRooms as $meetingRoom){
-            array_push($services['meetingrooms'], $meetingRoom->services);
+            if($meetingRoom->services->count() > 0){
+                array_push($services['meetingrooms'], $meetingRoom->services);
+            }
+            else{
+                array_push($services['meetingrooms'], ['message' => 'This meeting room has no pending service requests']);
+            }     
         }
 
-        
         // return view with residences data
         return view('pages.services', [
             'accommodation' => $accommodation,

@@ -16,40 +16,42 @@ class IssueController extends Controller
         $accommodation = Accommodation::where('domain', $domain)->get();
 
         // get collections of issuable types that belong to current accommodation
-        $residences = $accommodation->residences;
-        $assets = $accommodation->assets;
-        $accommodation_issues = $accommodation->issues;
+        $residences = $accommodation[0]->residences;
+        $assets = $accommodation[0]->assets;
 
         // init data array
         $issues = [
-            'accommodation' => null,
-            'residences' => null,
-            'assets' => null
+            'accommodation' => [],
+            'residences' => [],
+            'assets' => []
         ];
+
+        // retrieve issues related to accommodation
+        if ($accommodation[0]->issues->count() > 0) {
+            $issues['accommodation'] = $accommodation->issues;
+        }
+        else{
+            $issues['accommodation'] = ['message' => 'The accommodation has no related issues'];
+        }
 
         // retrieve issues of each residence
         foreach ($residences as $residence) {
             if (!empty($residence->issues)) {
-                $issues['residences'] = $residence->issues;
-            } else {
-                $issues['residences'] = 'There are currently no related issues to any residence';
+                array_push($issues['residences'], $residence->issues);
+            }
+            else{
+                array_push($issues['residences'], ['message' => 'This residence has no issues']);
             }
         }
 
         // retrieve issues of each asset
         foreach ($assets as $asset) {
-            if (!empty($asset->issues)) {
-                $issues['assets'] = $asset->issues;
-            } else {
-                $issues['assets'] = 'There are currently no issues related to any reservable asset';
+            if ($asset->issues->count() > 0) {
+                array_push($issues['assets'], $asset->issues);
             }
-        }
-
-        // retrieve issues related to accommodation
-        if (!empty($accommodation_issues)) {
-            $issues['accommodation'] = $accommodation_issues;
-        } else {
-            $issues['accommodation'] = 'There are currently no issues related to this accommodation';
+            else{
+                array_push($issues['assets'], ['message' => 'This asset has no issues']);
+            } 
         }
 
         // return data to view

@@ -27,7 +27,7 @@
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.service')
-        <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/services'}}">Services **</a></span>
+        <span><a href="{{ '/' . $accommodation[0]->domain . '/dashboard/services'}}">Services</a></span>
     </div>
     <div class="menu-tile">
         @include('components.svg.menu.reservable')

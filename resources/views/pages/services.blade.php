@@ -3,7 +3,8 @@
 @section('content')
 <div class="content">
     <code>
-        {{ json_encode($issues) }}
+        {{ json_encode($services) }}
     </code>
+
 </div>
 @endsection

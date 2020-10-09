@@ -7,6 +7,7 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\MeetingRoomController;
 use App\Http\Controllers\ReservationController;
