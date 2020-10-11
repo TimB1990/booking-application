@@ -19,7 +19,8 @@ class CreateServicesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->boolean('available');
-            $table->double('price',5,2);          
+            $table->double('price',5,2);
+            $table->timestamps();          
         });
     }
 

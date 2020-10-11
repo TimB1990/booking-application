@@ -19,12 +19,11 @@ class ServiceController extends Controller
         $meetingRooms = $accommodation[0]->meetingRooms;
 
         $services = [
+            'services' => Service::all(),
             'accommodation' => [],
             'residences' => [],
             'meetingrooms' => []
         ];
-
-
 
         // retrieve services of each polymorphic relation and push them to services. 
         if($accommodation[0]->services->count() > 0){
@@ -44,7 +43,6 @@ class ServiceController extends Controller
             }     
         }
 
-       
         foreach($meetingRooms as $meetingRoom){
             if($meetingRoom->services->count() > 0){
                 array_push($services['meetingrooms'], $meetingRoom->services);

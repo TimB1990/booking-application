@@ -36,7 +36,7 @@ class IssueController extends Controller
 
         // retrieve issues of each residence
         foreach ($residences as $residence) {
-            if (!empty($residence->issues)) {
+            if ($residence->issues->count() > 0) {
                 array_push($issues['residences'], $residence->issues);
             }
             else{

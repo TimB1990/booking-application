@@ -7,6 +7,7 @@ use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\GuestSeeder;
 use Database\Seeders\ResidenceSeeder;
+use Database\Seeders\MeetingRoomSeeder;
 use Database\Seeders\AccommodationSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AccommodationSeeder::class,
             ResidenceSeeder::class,
+            MeetingRoomSeeder::class,
             GuestSeeder::class     
         ]);
     }

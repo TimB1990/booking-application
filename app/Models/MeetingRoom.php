@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class MeetingRoom extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [];
+    public $timestamps = false;
+
     public function accommodation(){
         return $this->belongsTo(Accommodation::class);
     }
