@@ -36,6 +36,7 @@
             border-radius: 1rem;
             color:white;
             margin: 0.25rem;
+            text-decoration: none;
             width: 26%;
             height: 26%;
             padding: 0.5rem;
@@ -46,16 +47,19 @@
                 color: black;
                 animation-name: hover;
                 animation-duration: 1s;
+
+                span{
+                    color: black;
+                }
             }
         
             span{
-                a{
-                    text-align: center;
-                    font-size: 14px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    color: white;
-                }
+                text-align: center;
+                font-size: 14px;
+                font-weight: bold;
+                text-decoration: none;
+                color: white;
+                margin-bottom: 1rem;
             }
         }
     }

@@ -97,6 +97,7 @@
                 margin: 0.25rem;
                 width: 26% * ($layout-breakpoint-sm / $layout-breakpoint-md);
                 height: 26%;
+                text-decoration: none;
                 padding: 0.5rem;
 
                 &:hover {
@@ -105,22 +106,28 @@
                     color: black;
                     animation-name: hover;
                     animation-duration: 1s;
+
+                    span{
+                        color: black;
+                    }
                 }
 
                 span {
-                    a{
-                        text-align: center;
-                        font-size: 14px;
-                        font-weight: bold;
-                        text-decoration: none;
-                        color: white;
-                    }
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    color: white;
+                    margin-bottom: 1rem;
+
                 }
             }
         }
 
         .content{
             padding: 1rem;
+            display: block;
+            overflow-wrap: break-word;
         }
 
         .hide {

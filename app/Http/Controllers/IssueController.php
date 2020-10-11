@@ -30,17 +30,11 @@ class IssueController extends Controller
         if ($accommodation[0]->issues->count() > 0) {
             $issues['accommodation'] = $accommodation->issues;
         }
-        else{
-            $issues['accommodation'] = ['message' => 'The accommodation has no related issues'];
-        }
 
         // retrieve issues of each residence
         foreach ($residences as $residence) {
             if ($residence->issues->count() > 0) {
                 array_push($issues['residences'], $residence->issues);
-            }
-            else{
-                array_push($issues['residences'], ['message' => 'This residence has no issues']);
             }
         }
 
@@ -49,9 +43,6 @@ class IssueController extends Controller
             if ($asset->issues->count() > 0) {
                 array_push($issues['assets'], $asset->issues);
             }
-            else{
-                array_push($issues['assets'], ['message' => 'This asset has no issues']);
-            } 
         }
 
         // return data to view

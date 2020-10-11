@@ -29,27 +29,17 @@ class ServiceController extends Controller
         if($accommodation[0]->services->count() > 0){
             $services['accommodation'] = $accommodation->services;
         }
-        else{
-            $services['accommodation'] = ['message' => 'This accommodation has no pending service requests'];
-        }
-
-              
+      
         foreach($residences as $res){
             if($res->services->count() > 0){
                 array_push($services['residences'], $res->services);
-            }
-            else{
-                array_push($services['residences'], ['message' => 'This residence has no pending service requests'] );
-            }     
+            }   
         }
 
         foreach($meetingRooms as $meetingRoom){
             if($meetingRoom->services->count() > 0){
                 array_push($services['meetingrooms'], $meetingRoom->services);
-            }
-            else{
-                array_push($services['meetingrooms'], ['message' => 'This meeting room has no pending service requests']);
-            }     
+            }  
         }
 
         // return view with residences data
