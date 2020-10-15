@@ -5,7 +5,7 @@
 
     <div class="btn-panel">
         <button class="btn-default" onclick="">Previous Week</button>
-        <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ date('W') }}</span>
+        <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ date('W') . " wrong week" }}</span>
         <button class="btn-default" onclick="">Next Week</button>
     </div>
 
@@ -15,9 +15,9 @@
             <td></td>
 
             <!-- loop over date between week start and week end for horizontal axis -->
-            @for($d = 0; $d < 7; $d++) 
+            @for($d = 0; $d < 14; $d++) 
                 @php 
-                    $weekStart=date('Y-m-d', strtotime('monday next week')); 
+                    $weekStart=date('Y-m-d', strtotime('monday this week')); 
                     $day=date('D, Y-m-d',
                         strtotime($weekStart . ' +' . $d . ' days' ));
                 @endphp 
@@ -33,40 +33,59 @@
                 <td>{{ $i + 1}}</td>
 
                 <!-- display table cells -->
-                @for($j = 0; $j < 7; $j++)
+                @for($j = 0; $j < 14; $j++)
 
                     @php
 
-                            $celDate = date('Y-m-d', strtotime(date('Y-m-d', strtotime('monday next week')) . ' +' . $j . ' days'));
+                            $cellDate = date('Y-m-d', strtotime(date('Y-m-d', strtotime('monday this week')) . ' +' . $j . ' days'));
                             $residenceNr = $i + 1;
                             $markcell = false;
+                            $hideCellSideBorders = false;
+                            $hideCellLeftBorder = false;
 
+                            // loop over each reservation
                             foreach($reservations as $reservation){
+
+                                // loop over each residence from reservation
                                 foreach($reservation->residences as $residence){
-                                    if($residence->residence_nr == $residenceNr && ($celDate >= $reservation->check_in && $celDate <= $reservation->check_out)){
+
+                                    // check if cellDate is greater than or equal to checkin and check if cellDate is smaller than or equal to checkout date of reservation, if true mark cell.
+                                    if($residence->residence_nr == $residenceNr && ($cellDate >= $reservation->check_in && $cellDate <= $reservation->check_out)){
                                         $markcell = true;
+
+                                        // check if cellDate is between checkin and checkout date reservation, if true hide cell's left and right borders
+                                        if($residence->residence_nr == $residenceNr && ($cellDate > $reservation->checkin_in && $cellDate < $reservation->check_out)){
+                                            $hideCellSideBorders = true;
+                                        }
+
+                                        // check if CellDate is checkout date, if true hiden only left border
+                                        if($residence->residence_nr == $residenceNr && ($cellDate == $reservation->check_out)){
+                                            $hideCellLeftBorder = true;
+                                        }
                                     }
                                 }
                             }
 
-
                     @endphp
+                        @if($hideCellSideBorders == false && $hideCellLeftBorder == false)
+                            <td></td>
+                        @endif
               
-                        <td style="{{ $markcell === true ? 'background-color:red;' : '' }}">
-                        <!-- cel content -->
-                        {{ $celDate }}, {{ $residenceNr }}
-                        
-                    </td>
+                        @if($hideCellSideBorders == true)
+                            <td style="border-left:none;border-right:none;" class="{{ $markcell == true ? 'taken' : '' }}">
+                                @if($cellDate == $reservation->check_in)
+                                    {{ $reservation->id }}, {{ $reservation->guest->first_name}} {{ $reservation->guest->last_name }}
+                                @endif
+                            </td>
+                        @endif
 
+                        @if($hideCellLeftBorder == true)
+                            <td style="border-left:none;" class="{{ $markcell == true ? 'taken' : '' }}"></td>
+                        @endif
                 @endfor
             </tr>
             @endfor
     </table>
-
-    <!-- code -->
-    <code>
-        {{ $reservations }}
-    </code>
 
 </div>
 
