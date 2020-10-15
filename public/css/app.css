@@ -595,22 +595,27 @@ header .profile img {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  overflow: scroll;
 }
 
-.content table {
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.content .info-table {
   font-size: 1.25rem;
   width: 100%;
   border-spacing: 0.5rem;
   border-collapse: seperate;
 }
 
-.content table tr td {
+.content .info-table tr td {
   overflow: wrap;
   padding: 0.75rem;
   border: 1px solid grey;
 }
 
-.content table tr td:nth-child(even) {
+.content .info-table tr td:nth-child(even) {
   text-align: left;
   max-width: 400px;
 }
@@ -624,6 +629,16 @@ header .profile img {
   margin-top: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.reservable-planner {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.reservable-planner tr td {
+  padding: 0.25rem;
+  border: 1px solid grey;
 }
 
 .single-chart {
@@ -699,10 +714,26 @@ body {
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid grey;
+  overflow: hidden;
 }
 
 .flex-container {
   position: relative;
-  border: 1px solid red;
+}
+
+.btn-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.btn-default {
+  border: 1px solid white;
+  background-color: #1a1a1a;
+  width: 8rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
 }
 

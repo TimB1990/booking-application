@@ -1,4 +1,4 @@
-<table>
+<table class="info-table">
     <tr>
         <td>name</td>
         <td>{{ $accommodation[0]->name }}</td>

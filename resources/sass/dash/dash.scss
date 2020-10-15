@@ -77,8 +77,13 @@ header{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    overflow: scroll;
 
-    table{
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
+    .info-table {
         font-size: 1.25rem;
         width: 100%;
         border-spacing: 0.5rem;
@@ -108,4 +113,17 @@ header{
     margin-top: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.reservable-planner{
+    border-collapse: collapse;
+    width: 100%;
+
+    tr{
+        td {
+            padding: 0.25rem;
+            border: 1px solid grey;
+        }
+    }
+
 }

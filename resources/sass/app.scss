@@ -9,10 +9,26 @@ body{
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid grey;
+    overflow: hidden;
 }
 
 .flex-container{
     position: relative;
-    border: 1px solid red;
+}
+
+.btn-panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.btn-default{
+    border: 1px solid white;
+    background-color: $darkgrey;
+    width: 8rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: white;
 }
 
