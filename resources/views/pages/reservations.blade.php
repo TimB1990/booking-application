@@ -4,9 +4,23 @@
 <div class="content">
 
     <div class="btn-panel">
-        <button class="btn-default" onclick="">Previous Week</button>
-        <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ date('W') . " wrong week" }}</span>
-        <button class="btn-default" onclick="">Next Week</button>
+
+        @php
+
+            // get querystring param from current route
+            $year = app('request')->input('year');
+            $week_number = app('request')->input('week');
+
+            // define weekstart of given week no.
+            $week_start = new DateTime();
+            $week_start->setISODate($year, $week_number);
+
+        @endphp
+
+        <!-- html button panel -->        
+        <a class="btn-default">Previous Week</a>
+            <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week_number . ' | ' . ($week_number + 1) }}</span>
+        <a class="btn-default">Next Week</a>
     </div>
 
 
@@ -16,10 +30,8 @@
 
             <!-- loop over date between week start and week end for horizontal axis -->
             @for($d = 0; $d < 14; $d++) 
-                @php 
-                    $weekStart=date('Y-m-d', strtotime('monday this week')); 
-                    $day=date('D, Y-m-d',
-                        strtotime($weekStart . ' +' . $d . ' days' ));
+                @php       
+                    $day=date('D, Y-m-d', strtotime($week_start->format('Y-m-d') . ' +' . $d . ' days' ));
                 @endphp 
                 <td style="">
                     {{ $day }} 
@@ -37,7 +49,7 @@
 
                     @php
 
-                            $cellDate = date('Y-m-d', strtotime(date('Y-m-d', strtotime('monday this week')) . ' +' . $j . ' days'));
+                            $cellDate = date('Y-m-d', strtotime($week_start->format('Y-m-d') . ' +' . $j . ' days'));
                             $residenceNr = $i + 1;
                             $markcell = false;
                             $hideCellSideBorders = false;
