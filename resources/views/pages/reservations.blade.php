@@ -18,8 +18,10 @@
         @endphp
 
         <!-- html button panel -->        
-        <a class="btn-default">Previous Week</a>
-            <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week_number . ' | ' . ($week_number + 1) }}</span>
+        <a href="" class="btn-default">Previous Week</a>
+        
+        <!-- INCORRECT -->
+            <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week_number . ' | ' . ($week_number < 52 ? $week_number + 1 : 1) }}</span>
         <a class="btn-default">Next Week</a>
     </div>
 
