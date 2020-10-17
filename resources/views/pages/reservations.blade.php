@@ -9,20 +9,18 @@
 
             // get querystring param from current route
             $year = app('request')->input('year');
-            $week_number = app('request')->input('week');
+            $week = app('request')->input('week');
 
             // define weekstart of given week no.
             $week_start = new DateTime();
-            $week_start->setISODate($year, $week_number);
+            $week_start->setISODate($year, $week);
 
         @endphp
 
         <!-- html button panel -->        
-        <a href="" class="btn-default">Previous Week</a>
-        
-        <!-- INCORRECT -->
-            <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week_number . ' | ' . ($week_number < 52 ? $week_number + 1 : 1) }}</span>
-        <a class="btn-default">Next Week</a>
+        <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . ($week > 1 ? $year : $year - 1 ). '&week=' . ($week > 1 ? $week - 1 : 52) }}" class="btn-default">Previous Week</a>
+            <span style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week . ' | ' . ($week < 52 ? $week + 1 : 1) }}</span>
+        <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . ($week < 52 ? $year : $year + 1) . '&week=' . ($week < 52 ? $week + 1 : 1) }}" class="btn-default">Next Week</a>
     </div>
 
 
