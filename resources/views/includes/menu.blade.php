@@ -15,7 +15,7 @@
     <span>Meeting Rooms</span>
     </a>
 
-    <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . date('Y') . '&week=' . date('W') }}" class="menu-tile">
+    <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . date('Y') . '&week=' . date('W') . '&subject=residences' }}" class="menu-tile">
         @include('components.svg.menu.reserv')
     <span>Reservations</span>
     </a>

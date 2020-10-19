@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use App\Models\MeetingRoom;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ReservationController extends Controller
 {
@@ -19,6 +21,7 @@ class ReservationController extends Controller
         // retrieve query string parameters
         $week = $request->query('week'); 
         $year = $request->query('year');
+        $subject = $request->query('subject');
 
         // retrieve start date of given week
         $weekStart = new DateTime();
@@ -35,6 +38,7 @@ class ReservationController extends Controller
             ['check_in', '>=', $weekStart],
             ['check_out', '<=', $followingWeekEnd]
         ])->get();
+
 
         // return view with reservations data
         return view('pages.reservations',[
