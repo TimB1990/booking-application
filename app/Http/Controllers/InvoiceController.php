@@ -14,8 +14,8 @@ class InvoiceController extends Controller
     {
         
         // retrieve accommodation information
-        $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
+        $accommodation = Accommodation::where('domain', $domain)->first();
+        $acc_id = $accommodation->id;
 
         // retrieve invoice that belong to reservations on current accommodation
         $invoices = Invoice::whereHas('reservation', function (Builder $query) use ($acc_id) {

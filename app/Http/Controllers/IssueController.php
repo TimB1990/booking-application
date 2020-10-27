@@ -13,11 +13,11 @@ class IssueController extends Controller
     public function index($domain)
     {
         // get current accommodation
-        $accommodation = Accommodation::where('domain', $domain)->get();
+        $accommodation = Accommodation::where('domain', $domain)->first();
 
         // get collections of issuable types that belong to current accommodation
-        $residences = $accommodation[0]->residences;
-        $assets = $accommodation[0]->assets;
+        $residences = $accommodation->residences;
+        $assets = $accommodation->assets;
 
         // init data array
         $issues = [
@@ -27,7 +27,7 @@ class IssueController extends Controller
         ];
 
         // retrieve issues related to accommodation
-        if ($accommodation[0]->issues->count() > 0) {
+        if ($accommodation->issues->count() > 0) {
             $issues['accommodation'] = $accommodation->issues;
         }
 

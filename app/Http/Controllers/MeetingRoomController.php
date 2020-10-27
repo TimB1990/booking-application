@@ -12,8 +12,8 @@ class MeetingRoomController extends Controller
     public function index($domain)
     {
         // get accommodation id
-        $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
+        $accommodation = Accommodation::where('domain', $domain)->first();
+        $acc_id = $accommodation->id;
 
         // get meeting rooms
         $meetingRooms = MeetingRoom::where('accommodation_id', $acc_id)->get();

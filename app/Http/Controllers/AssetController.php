@@ -12,8 +12,8 @@ class AssetController extends Controller
 
     public function index($domain)
     {
-        $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
+        $accommodation = Accommodation::where('domain', $domain)->first();
+        $acc_id = $accommodation->id;
 
         $assets = Asset::whereHas('accommodation', function (Builder $query) use ($acc_id) {
             $query->where('accommodation_id', $acc_id);

@@ -49,7 +49,7 @@ class AccommodationController extends Controller
     }
 
     public function showByDomain(Request $request, $domain){
-        $accommodation = Accommodation::where('domain', $domain)->get();
+        $accommodation = Accommodation::where('domain', $domain)->first();
         
         return view('pages.home', [
             'accommodation' => $accommodation,

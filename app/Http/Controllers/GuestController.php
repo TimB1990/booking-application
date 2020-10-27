@@ -13,8 +13,8 @@ class GuestController extends Controller
     public function index($domain)
     {
         // retrieve accommodation information
-        $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
+        $accommodation = Accommodation::where('domain', $domain)->first();
+        $acc_id = $accommodation->id;
 
         // retrieve guests that have reservation on current accommodation
         $guests = Guest::whereHas('reservations', function (Builder $query) use ($acc_id) {

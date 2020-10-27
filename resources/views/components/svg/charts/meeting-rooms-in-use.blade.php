@@ -17,5 +17,5 @@
       />
       </svg>
       <span class="single-chart-description">Meeting Rooms</span>
-    <span class="single-chart-status">0 / {{ $accommodation[0]->amount_meeting_rooms }}</span>
+    <span class="single-chart-status">0 / {{ $accommodation->amount_meeting_rooms }}</span>
 </div>

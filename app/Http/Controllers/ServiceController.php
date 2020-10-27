@@ -12,11 +12,11 @@ class ServiceController extends Controller
     public function index($domain)
     {
         // retrieve id of domain
-        $accommodation = Accommodation::where('domain', $domain)->get();
+        $accommodation = Accommodation::where('domain', $domain)->first();
 
         // get collection of serviceable types that belong to accommodation
-        $residences = $accommodation[0]->residences;
-        $meetingRooms = $accommodation[0]->meetingRooms;
+        $residences = $accommodation->residences;
+        $meetingRooms = $accommodation->meetingRooms;
 
         $services = [
             'services' => Service::all(),
@@ -26,7 +26,7 @@ class ServiceController extends Controller
         ];
 
         // retrieve services of each polymorphic relation and push them to services. 
-        if($accommodation[0]->services->count() > 0){
+        if($accommodation->services->count() > 0){
             $services['accommodation'] = $accommodation->services;
         }
       

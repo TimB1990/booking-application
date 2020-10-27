@@ -19,7 +19,7 @@
             <div class="bars">
                 <i style="font-size:28px;" class="fa fa-bars"></i>
             </div>
-        <p class="logo-text">&reg; Ressys - {{ $accommodation[0]->name }}</p>
+        <p class="logo-text">&reg; Ressys - {{ $accommodation->name }}</p>
             <div class="profile">
             <img src="{{ asset('images/photo.jpg')}}" alt="PP">
             </div>

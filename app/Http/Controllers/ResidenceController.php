@@ -12,8 +12,8 @@ class ResidenceController extends Controller
     public function index($domain)
     {
         // retrieve id of domain
-        $accommodation = Accommodation::where('domain', $domain)->get();
-        $acc_id = $accommodation[0]->id;
+        $accommodation = Accommodation::where('domain', $domain)->first();
+        $acc_id = $accommodation->id;
 
         // retrieve residences by retrieved id
         $residences = Residence::where('accommodation_id', $acc_id)->orderBy('residence_nr', 'asc')->get();
