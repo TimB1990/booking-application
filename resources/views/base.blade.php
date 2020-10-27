@@ -11,12 +11,5 @@
 </head>
 <body>
 
-        <div id="app">
-                <root></root>
-        </div>
-
-        <!-- script -->
-        <script src="{{ mix('/js/app.js')}}"></script>
-
 </body>
 </html>
