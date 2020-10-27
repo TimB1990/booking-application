@@ -21,10 +21,12 @@
 
         <!-- btn panel left section -->
         <div class="btn-panel-section">
-        <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . $year . '&week=' . $week . '&subject=residences' }}" class="btn-default {{ $subject == 'residences' ? 'active' : '' }}">
+            <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . $year . '&week=' . $week . '&subject=residences' }}"
+                class="btn-default {{ $subject == 'residences' ? 'active' : '' }}">
                 Residences
             </a>
-        <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . $year . '&week=' . $week . '&subject=meetingrooms' }}" class="btn-default {{ $subject == 'meetingrooms' ? 'active' : ''}}">
+            <a href="{{ '/' . $accommodation[0]->domain . '/dashboard/reservations?year=' . $year . '&week=' . $week . '&subject=meetingrooms' }}"
+                class="btn-default {{ $subject == 'meetingrooms' ? 'active' : ''}}">
                 Meeting Rooms
             </a>
         </div>
@@ -58,14 +60,14 @@
         <!-- display residences nrs for vertical axis -->
 
         @php
-        
+
         $amount = null;
 
         if($subject == "residences"){
-            $amount = $accommodation[0]->amount_residences;
+        $amount = $accommodation[0]->amount_residences;
         }
         if($subject == "meetingrooms"){
-            $amount = $accommodation[0]->amount_meeting_rooms;
+        $amount = $accommodation[0]->amount_meeting_rooms;
         }
 
 
@@ -88,61 +90,69 @@
 
                 // if subject = residence loop over each residence from reservation
                 if($subject == 'residences' && isset($reservation->residences)){
-                foreach($reservation->residences as $residence){
+                    foreach($reservation->residences as $residence){
 
-                // check if cellDate is between checkin and checkout, if true mark cell.
-                if($residence->residence_nr == $number && ($cellDate >= $reservation->check_in && $cellDate <=
-                    $reservation->check_out)){
-                    $markcell = true;
+                    // check if cellDate is between checkin and checkout, if true mark cell.
+                    if($residence->residence_nr == $number && ($cellDate >= $reservation->check_in && $cellDate <=
+                        $reservation->check_out)){
+                        $markcell = true;
 
-                    // check if cellDate is between checkin and checkout date reservation, if true hide cell's left
-                    if($residence->residence_nr == $number && ($cellDate > $reservation->checkin_in &&
-                    $cellDate < $reservation->check_out)){
-                        $hideCellSideBorders = true;
-                        }
+                        // check if cellDate is between checkin and checkout date reservation, if true hide cell's left
+                        if($residence->residence_nr == $number && ($cellDate > $reservation->checkin_in &&
+                        $cellDate < $reservation->check_out)){
+                            $hideCellSideBorders = true;
+                            }
 
-                        // check if CellDate is checkout date, if true hiden only left border
-                        if($residence->residence_nr == $number && ($cellDate == $reservation->check_out)){
-                        $hideCellLeftBorder = true;
-                        }
-                        }
-                        }
-                        }
-
-                        if($subject == 'meetingrooms' && isset($reservation->meetingRooms)){
-                        foreach($reservation->meetingRooms as $mr){
-                        if($mr->id == $number && ($cellDate >= $reservation->check_in && $cellDate <= $reservation->
-                            check_out)){
-                            $markcell = true;
+                            // check if CellDate is checkout date, if true hiden only left border
+                            if($residence->residence_nr == $number && ($cellDate == $reservation->check_out)){
+                            $hideCellLeftBorder = true;
+                            }
                             }
                             }
                             }
 
+                            if($subject == 'meetingrooms' && isset($reservation->meetingRooms)){
+                                foreach($reservation->meetingRooms as $mr){
+
+                                if($mr->id == $number && ($cellDate >= $reservation->check_in && $cellDate <= $reservation->
+                                    check_out)){
+                                        $markcell = true;
+                                    }
+                                }
+
+                                // occurence of checkin date?
                             }
+                    }
 
-                            @endphp
+                    @endphp
 
 
-                            @if ($hideCellSideBorders == false && $hideCellLeftBorder == false)
-                            <td></td>
-                            @endif
+                    @if ($hideCellSideBorders == false && $hideCellLeftBorder == false)
+                    <td></td>
+                    @endif
 
-                            @if ($hideCellSideBorders == true)
-                            <td style="border-left:none;border-right:none;"
-                                class="{{ $markcell == true ? 'taken' : '' }}">
-                                @if ($cellDate == $reservation->check_in)
-                                {{ $reservation->id }}, {{ $reservation->guest->first_name }}
-                                {{ $reservation->guest->last_name }}
-                                @endif
-                            </td>
-                            @endif
+                    @if ($hideCellSideBorders == true)
+                    <td style="border-left:none;border-right:none;overflow:visible;position:relative;"
+                        class="{{ $markcell == true ? 'taken' : '' }}">
 
-                            @if ($hideCellLeftBorder == true)
-                            <td style="border-left:none;" class="{{ $markcell == true ? 'taken' : '' }}"></td>
-                            @endif
-                            @endfor
-                            </tr>
-                            @endfor
+                        @if ($cellDate == $reservation->check_in && $subject="residences")
+                        <span
+                            style="font-weight:bold;position:absolute;max-height:30px;top:25%;width:400%;z-index:1;">
+                            {{ $reservation->id }}, {{ $reservation->guest->first_name }}
+                            {{ $reservation->guest->last_name }}, adults: {{ $reservation->adults}}, children:
+                            {{ $reservation->children }}, babies: {{ $reservation->babies }}
+                        </span>
+                        @endif
+
+                    </td>
+                    @endif
+
+                    @if ($hideCellLeftBorder == true)
+                    <td style="border-left:none;" class="{{ $markcell == true ? 'taken' : '' }}"></td>
+                    @endif
+                    @endfor
+                    </tr>
+                    @endfor
     </table>
 </div>
 
