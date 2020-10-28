@@ -16,7 +16,6 @@ class CreateResidencesTable extends Migration
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('accommodation_id')->constrained();
-            $table->integer('residence_nr');
             $table->double('area_m2',4,1);
             $table->enum('status', ['taken','free','unavailable']);
             $table->string('type');

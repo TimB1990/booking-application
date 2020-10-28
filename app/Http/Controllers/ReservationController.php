@@ -56,44 +56,50 @@ class ReservationController extends Controller
         }
 
         // initialize data structure
-        $data = [];
+        $cells = [];
 
         // create data structure
         for ($i = 0; $i < $amount; $i++) {
             for ($d = 0; $d < $days; $d++) {
 
                 // define cell date
-                $cellDate = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $d));
+                $no = $i + 1;
+                $cellDate = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $d . 'days'));
 
-                // push number and celldate to array
-                array_push($data, [
+                // define cell
+                $cell = [
                     'no' => $i + 1,
                     'day' => $d + 1,
                     'date' => $cellDate,
-                    'resv' => []
-                ]);
+                    'taken' => false
+                ];
 
-                // check foreach reservation if any date between check-in and check-out matches
-                foreach ($reservations as $reservation) {
-                    foreach ($reservation->residences as $residence) {
-                        if ($residence->residence_nr == $data[$d]['no'] && ($cellDate > $reservation->checkin_in && $cellDate < $reservation->check_out)) {
-                            $data[$d]['resv'] = [
-                                'id' => $reservation->id,
-                                'name' => $reservation->guest->first_name .  ' ' . $reservation->guest->last_name,
-                                'checkin' => $reservation->check_in,
-                                'checkout' => $reservation->check_out,
-                                'markcell' => true,
-                            ];
+                foreach ($reservations as $resv) {
+                    if (!empty($resv[$subject])) {
+                        foreach ($resv[$subject] as $sub) {
+                            // dd([
+                            //     'date' => $cellDate,
+                            //     'checkin' => $resv->check_in,
+                            //     'checkout' => $resv->check_out,
+                            //     'date_is_earlier_than_checkin' => ($cellDate <= strtotime($resv->check_in))
+                            // ]);
+
+                            if ($sub->id == $no && $cellDate >= $resv->check_in && $cellDate <= $resv->check_out) {
+                                $cell['taken'] = true;
+                            }
                         }
                     }
                 }
+
+                array_push($cells, $cell);
             }
         }
+
 
         // return view with reservations data
         return view('pages.reservations', [
             'accommodation' => $accommodation,
-            'cells' => $data,
+            'cells' => $cells,
             'title' => 'Reservations'
         ]);
     }
