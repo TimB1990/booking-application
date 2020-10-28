@@ -63,9 +63,13 @@
                 @foreach($cells as $cell)
                     @if($cell['no'] == ($i + 1))
                         <td>
-                        <span style="{{ $cell['taken'] ? 'background-color:red;font-weight:bold;padding:0.25rem;' : ''}}">
-                            {{ json_encode($cell['taken'])}}
-                        </span>
+                            @if(json_encode($cell['taken'] == true ))
+                                @foreach($cell['resv'] as $resv)
+                                    <span class="taken">
+                                        {{ $resv['id']}} | {{ $resv['name']}} {{ $resv['check_in'] }} - {{ $resv['check_out']}}
+                                    </span>
+                                @endforeach
+                            @endif
                         </td>
                     @endif
                 @endforeach

@@ -584,7 +584,11 @@ header .profile img {
 }
 
 .taken {
+  display: block;
   background-color: red;
+  padding: 0.25rem;
+  font-weight: bold;
+  min-width: 220px;
 }
 
 .free {

@@ -22,7 +22,7 @@ class ReservationController extends Controller
         $week = $request->query('week');
         $year = $request->query('year');
         $subject = $request->query('subject');
-        $days = 14;
+        $days = 7;
 
         // retrieve start date of given week
         $weekStart = new DateTime();
@@ -71,7 +71,8 @@ class ReservationController extends Controller
                     'no' => $i + 1,
                     'day' => $d + 1,
                     'date' => $cellDate,
-                    'taken' => false
+                    'taken' => false,
+                    'resv' => []
                 ];
 
                 foreach ($reservations as $resv) {
@@ -85,7 +86,15 @@ class ReservationController extends Controller
                             // ]);
 
                             if ($sub->id == $no && $cellDate >= $resv->check_in && $cellDate <= $resv->check_out) {
+
                                 $cell['taken'] = true;
+
+                                array_push($cell['resv'] , [
+                                    'id' => $resv->id,
+                                    'name' => $resv->guest->first_name[0] . '. ' . $resv->guest->last_name,
+                                    'check_in' => date('m-d', strtotime($resv->check_in)),
+                                    'check_out' => date('m-d', strtotime($resv->check_out))
+                                ]);
                             }
                         }
                     }
