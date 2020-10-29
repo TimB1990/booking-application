@@ -12,7 +12,7 @@
         $year = app('request')->input('year');
         $week = app('request')->input('week');
         $subject = app('request')->input('subject');
-        $days = 14;
+        $days = 7;
 
         // define weekstart of given week no.
         $week_start = new DateTime();
@@ -30,16 +30,33 @@
                 class="btn-default {{ $subject == 'meetingrooms' ? 'active' : ''}}">
                 Meeting Rooms
             </a>
+            <a href="{{ '/' . $accommodation->domain . '/dashboard/reservations?year=' . $year . '&week=' . $week . '&subject=assets' }}"
+                class="btn-default {{ $subject == 'assets' ? 'active' : ''}}">
+                Assets
+            </a>
         </div>
 
         <!-- btn panel right section -->
         <div class="btn-panel-section">
+            <!-- prev week(s) button -->
             <a href="{{ '/' . $accommodation->domain . '/dashboard/reservations?year=' . ($week > 1 ? $year : $year - 1) . '&week=' . ($week > 1 ? $week - 1 : 52) . '&subject=' . $subject }}"
-                class="btn-default">Previous Week</a>
+                class="btn-default">Previous Week
+            </a>
+            <!-- current weeks(s) -->
             <span
-                style="margin-left:0.5rem;margin-right:0.5rem;">{{ $week . ' | ' . ($week < 52 ? $week + 1 : 1) }}</span>
+                style="margin-left:0.5rem;margin-right:0.5rem;">
+
+                @if($days == 7)
+                    {{ $week }}
+                @else
+                {{ $week . ' | ' . ($week < 52 ? $week + 1 : 1) }}
+                @endif
+            </span>
+
+            <!-- next week(s) btn -->
             <a href="{{ '/' . $accommodation->domain . '/dashboard/reservations?year=' . ($week < 52 ? $year : $year + 1) . '&week=' . ($week < 52 ? $week + 1 : 1) . '&subject=' . $subject  }}"
-                class="btn-default">Next Week</a>
+                class="btn-default">Next Week
+            </a>
         </div>
     </div>
 
@@ -66,7 +83,8 @@
                             @if(json_encode($cell['taken'] == true ))
                                 @foreach($cell['resv'] as $resv)
                                     <span class="taken">
-                                        {{ $resv['id']}} | {{ $resv['name']}} {{ $resv['check_in'] }} - {{ $resv['check_out']}}
+                                        ({{ $resv['id']}}) {{ $resv['name'] }} 
+                                        {{ $resv['check_in']}} - {{ $resv['check_out']}} 
                                     </span>
                                 @endforeach
                             @endif

@@ -74,6 +74,7 @@
             top: 0;
             bottom: 0;
             padding-bottom: 30%;
+            margin-bottom: 0 - $mainMargin;
             overflow: hidden;
             display: flex;
             justify-content: left;
@@ -83,6 +84,7 @@
             border-right: 1px solid grey;
             background-color: $darkgrey;
             clear: both;
+            height: auto;
 
             .menu-tile {
                 display: flex;

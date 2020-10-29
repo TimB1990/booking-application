@@ -31,13 +31,13 @@ class ReservationController extends Controller
         $weekStart->setIsoDate($year, $week);
 
         // calculate last day of next given week
-        $followingWeekEnd = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $days . ' days'));
+        $WeekEnd = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $days . ' days'));
 
         // get reservations
         $reservations = Reservation::where([
-            ['accommodation_id', $acc_id],
-            ['check_in', '>=', $weekStart],
-            ['check_out', '<=', $followingWeekEnd]
+            ['accommodation_id', $acc_id]
+            // ,['check_in', '>=', $weekStart]
+            // ,['check_out', '<=', $WeekEnd]
         ])->get();
 
         // set values for data structure

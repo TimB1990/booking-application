@@ -14,9 +14,13 @@ class ReservationFactory extends Factory
     public function definition()
     {
 
-        $d = strtotime("+1 week");
-        $checkinDate = date("Y-m-d", $d);
-        $checkoutDate = date("Y-m-d", strtotime("+3 days", $d));
+
+
+        $daysAhead = rand(2,7);
+        $date = strtotime("+" . $daysAhead . "days");
+
+        $checkinDate = date("Y-m-d", $date);
+        $checkoutDate = date("Y-m-d", strtotime("+2 days", $date));
 
 
         return [
@@ -33,5 +37,3 @@ class ReservationFactory extends Factory
         ];
     }
 }
-
-// strtotime('+3 days', strtotime($checkinDate))

@@ -19,7 +19,7 @@ class GuestFactory extends Factory
             'last_name' => $this->faker->lastName,
             'country' => 'Netherlands',
             'postcode' => $this->faker->postcode,
-            'house_nr' => $this->faker->randomNumber($nbDigits = 3, $strict = false),
+            'house_nr' => $this->faker->randomNumber($nbDigits = 2, $strict = false),
             'street' => $this->faker->streetName,
             'city' => $this->faker->city,
             'date_of_birth' => $this->faker->dateTimeBetween('1950-01-01','2002-01-01')->format('Y-m-d'),

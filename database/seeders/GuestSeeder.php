@@ -15,84 +15,90 @@ class GuestSeeder extends Seeder
 {
     public function run()
     {
+        $guests = Guest::factory()
+            ->has(Reservation::factory()->count(1))
+            ->count(3)
+            ->create();
 
-        $reservations = Reservation::factory()->forGuest()->create();
+        foreach ($guests as $guest) {
+            $reservations = $guest->reservations;
+            $reservations->each(function (Reservation $reservation) {
+
+                // set data for polymorphic many to many pivot table
+                $pivot_data = [
+                    'reservation_id' => $reservation->id,
+                    'reservable_type' => Residence::class,
+                    'reservable_id' => Residence::pluck('id')->random()
+                ];
+
+                // populate polymorphic many to many pivot table
+                DB::table('reservables')->insert($pivot_data);
+
+                // find residence that has defined random generated reservable_id
+                $residence = Residence::find($pivot_data['reservable_id']);
+
+                // set taken to true
+                $residence->status = 'taken';
+
+                // save residence to DB
+                $residence->save();
+
+                // get checkin and checkout dateTime
+                $dtCheckin = new DateTime($reservation->check_in);
+                $dtCheckout = new DateTime($reservation->check_out);
+
+                // calculate time difference in days
+                $diff = $dtCheckin->diff($dtCheckout)->format('%d');
 
 
-        $reservations->each(function (Reservation $reservation) {
+                // set invoice data
+                $invoice_data = [
+                    'reservation_id' => $reservation->id,
+                    'invoice_date' => $reservation->check_out,
+                    'due_date' => date("Y-m-d", strtotime("+1 week", strtotime($reservation->check_out))),
+                    'subtotal' => 0,
+                    'tax_9' => 0,
+                    'tax_21' => 0,
+                    'late_fees' => 0,
+                    'total' => 0
+                ];
 
-            // set data for polymorphic many to many pivot table
-            $pivot_data = [
-                'reservation_id' => $reservation->id,
-                'reservable_type' => Residence::class,
-                'reservable_id' => Residence::pluck('id')->random()
-            ];
+                // save invoice to DB
+                $invoice = Invoice::create($invoice_data);
 
-            // populate polymorphic many to many pivot table
-            DB::table('reservables')->insert($pivot_data);
+                // get reservables for reservation_id
+                $reservables = DB::table('reservables')->where('reservation_id', $reservation->id)->get();
 
-            // find residence that has defined random generated reservable_id
-            $residence = Residence::find($pivot_data['reservable_id']);
+                // create invoiceLine for each reservable in reservation
+                $reservables->each(function ($reservable) use ($invoice, $diff, $residence) {
+                    InvoiceLine::create([
+                        'invoice_id' => $invoice->id,
+                        'reservable_id' => $reservable->reservable_id,
+                        'type' => $reservable->reservable_type,
+                        'description' => 'stay (nights)',
+                        'quantity' => $diff,
+                        'cost' => $residence->price_per_night,
+                        'amount' => ($diff - 1) * $residence->price_per_night
+                    ]);
+                });
 
-            // set taken to true
-            $residence->status = 'taken';
+                // calc subtotal for invoice
+                $subtotal = $invoice->invoiceLines->sum('amount');
 
-            // save residence to DB
-            $residence->save();
+                // update invoice
+                $invoice->subtotal = $subtotal;
+                $invoice->tax_9 = $subtotal * 0.09;
+                $invoice->total = $subtotal + $invoice->tax_9 + $invoice->tax_21 + $invoice->late_fees;
 
-            // get checkin and checkout dateTime
-            $dtCheckin = new DateTime($reservation->check_in);
-            $dtCheckout = new DateTime($reservation->check_out);
+                // store invoice in DB
+                $invoice->save();
 
-            // calculate time difference in days
-            $diff = $dtCheckin->diff($dtCheckout)->format('%d');
-
-
-            // set invoice data
-            $invoice_data = [
-                'reservation_id' => $reservation->id,
-                'invoice_date' => $reservation->check_out,
-                'due_date' => date("Y-m-d", strtotime("+1 week", strtotime($reservation->check_out))),
-                'subtotal' => 0,
-                'tax_9' => 0,
-                'tax_21' => 0,
-                'late_fees' => 0,
-                'total' => 0
-            ];
-
-            // save invoice to DB
-            $invoice = Invoice::create($invoice_data);
-
-            // get reservables for reservation_id
-            $reservables = DB::table('reservables')->where('reservation_id', $reservation->id)->get();
-
-            // create invoiceLine for each reservable in reservation
-            $reservables->each(function ($reservable) use ($invoice, $diff, $residence) {
-                InvoiceLine::create([
-                    'invoice_id' => $invoice->id,
-                    'reservable_id' => $reservable->reservable_id,
-                    'type' => $reservable->reservable_type,
-                    'description' => 'stay (nights)',
-                    'quantity' => $diff - 1,
-                    'cost' => $residence->price_per_night,
-                    'amount' => ($diff - 1) * $residence->price_per_night
-                ]);
+                // update reservations
+                $reservation->invoice_id = $invoice->id;
+                $reservation->save();
             });
+        }
 
-            // calc subtotal for invoice
-            $subtotal = $invoice->invoiceLines->sum('amount');
-
-            // update invoice
-            $invoice->subtotal = $subtotal;
-            $invoice->tax_9 = $subtotal * 0.09;
-            $invoice->total = $subtotal + $invoice->tax_9 + $invoice->tax_21 + $invoice->late_fees;
-
-            // store invoice in DB
-            $invoice->save();
-
-            // update reservations
-            $reservation->invoice_id = $invoice->id;
-            $reservation->save();
-        });
+        // $reservations = Reservation::factory()->count(3)->forGuest()->create();
     }
 }

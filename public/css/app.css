@@ -461,6 +461,7 @@
     top: 0;
     bottom: 0;
     padding-bottom: 30%;
+    margin-bottom: -3rem;
     overflow: hidden;
     display: flex;
     justify-content: left;
@@ -470,6 +471,7 @@
     border-right: 1px solid grey;
     background-color: #1a1a1a;
     clear: both;
+    height: auto;
   }
 
   main .menu .menu-tile {
@@ -545,6 +547,10 @@ header .profile img {
   height: 6vh;
 }
 
+main {
+  margin-bottom: 3rem;
+}
+
 .footer {
   position: fixed;
   left: 0;
@@ -555,7 +561,7 @@ header .profile img {
   text-align: center;
   clear: both;
   background-color: #1a1a1a;
-  border-top: 1px solid grey;
+  border: 1px solid grey;
 }
 
 .footer div {
@@ -588,7 +594,7 @@ header .profile img {
   background-color: red;
   padding: 0.25rem;
   font-weight: bold;
-  min-width: 220px;
+  text-align: center;
 }
 
 .free {
@@ -599,11 +605,6 @@ header .profile img {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  overflow: scroll;
-}
-
-.content::-webkit-scrollbar {
-  display: none;
 }
 
 .content .info-table {
@@ -641,7 +642,7 @@ header .profile img {
 }
 
 .reservable-planner tr td {
-  padding: 0.4rem;
+  padding: 0.5rem;
   border: 1px solid grey;
 }
 
@@ -718,7 +719,12 @@ body {
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid grey;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .flex-container {
@@ -729,7 +735,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem;
+  padding: 1rem;
+}
+
+.btn-panel-section {
+  display: flex;
+  align-items: baseline;
 }
 
 .btn-default {
@@ -741,6 +752,7 @@ body {
   text-decoration: none;
   text-align: center;
   margin: 0.25rem;
+  width: 8rem;
 }
 
 .btn-default i {

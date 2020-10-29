@@ -24,6 +24,10 @@ header{
     }
 }
 
+main {
+    margin-bottom: $mainMargin;
+}
+
 .footer{
     position: fixed;
     left: 0;
@@ -34,7 +38,7 @@ header{
     text-align: center;
     clear: both;
     background-color: $darkgrey;
-    border-top: 1px solid grey;
+    border: 1px solid grey;
 
     div{
         position: absolute;
@@ -69,7 +73,7 @@ header{
     background-color:red;
     padding: 0.25rem;
     font-weight: bold;
-    min-width: 220px;
+    text-align: center;
 }
 
 .free{
@@ -81,11 +85,6 @@ header{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    overflow: scroll;
-
-    &::-webkit-scrollbar{
-        display: none;
-    }
 
     .info-table {
         font-size: 1.25rem;
@@ -122,10 +121,10 @@ header{
 .reservable-planner{
     border-collapse: collapse;
     width: 100%;
-
+    
     tr{
         td {
-            padding: 0.4rem;
+            padding: 0.5rem;
             border: 1px solid grey;
         }
     }
