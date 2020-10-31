@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use DateInterval;
 use App\Models\MeetingRoom;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -30,8 +31,11 @@ class ReservationController extends Controller
         // set query string values as year and week
         $weekStart->setIsoDate($year, $week);
 
+        // reset time to 14:00
+        $weekStart->setTime(0,0,0);
+
         // calculate last day of next given week
-        $WeekEnd = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $days . ' days'));
+        // $WeekEnd = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $days . ' days'));
 
         // get reservations
         $reservations = Reservation::where([
@@ -62,9 +66,11 @@ class ReservationController extends Controller
         for ($i = 0; $i < $amount; $i++) {
             for ($d = 0; $d < $days; $d++) {
 
-                // define cell date
                 $no = $i + 1;
-                $cellDate = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $d . 'days'));
+
+                // $cellDate = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $d . 'days'));
+                $cellDate = new DateTime($weekStart->format("Y-m-d H:i"));
+                $cellDate->add(new DateInterval("P". $d . "D"));
 
                 // define cell
                 $cell = [
@@ -78,22 +84,30 @@ class ReservationController extends Controller
                 foreach ($reservations as $resv) {
                     if (!empty($resv[$subject])) {
                         foreach ($resv[$subject] as $sub) {
-                            // dd([
-                            //     'date' => $cellDate,
-                            //     'checkin' => $resv->check_in,
-                            //     'checkout' => $resv->check_out,
-                            //     'date_is_earlier_than_checkin' => ($cellDate <= strtotime($resv->check_in))
-                            // ]);
 
-                            if ($sub->id == $no && $cellDate >= $resv->check_in && $cellDate <= $resv->check_out) {
+                            $checkinDt = new DateTime($sub->pivot->check_in);
+
+                            // for some weird reason subtracting 1D shows the beginning day
+                            $checkinDt->sub(new DateInterval('P1D'));
+
+
+                            $checkoutDt = new DateTime($sub->pivot->check_out);
+
+                            if ($sub->id == $no && $cellDate > $checkinDt && $cellDate < $checkoutDt ) {
+
+                                // dd([
+                                //     'cell date' => $cellDate->format('Y-m-d H:i'),
+                                //     'checkin' => $checkinDt,
+                                //     'checkout' => $checkoutDt
+                                // ]);
 
                                 $cell['taken'] = true;
 
                                 array_push($cell['resv'] , [
                                     'id' => $resv->id,
                                     'name' => $resv->guest->first_name[0] . '. ' . $resv->guest->last_name,
-                                    'check_in' => date('m-d', strtotime($resv->check_in)),
-                                    'check_out' => date('m-d', strtotime($resv->check_out))
+                                    'check_in' => date('m-d', strtotime($sub->pivot->check_in)),
+                                    'check_out' => date('m-d', strtotime($sub->pivot->check_out)),
                                 ]);
                             }
                         }

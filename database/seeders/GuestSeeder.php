@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use DateTime;
+use DateInterval;
 use App\Models\Guest;
 use App\Models\Invoice;
 use App\Models\Residence;
@@ -24,11 +25,32 @@ class GuestSeeder extends Seeder
             $reservations = $guest->reservations;
             $reservations->each(function (Reservation $reservation) {
 
+                // generate checkin checkout logic
+
+                $daysAhead = rand(2,7);
+                $date = strtotime("+" . $daysAhead . " days");
+
+                // $checkinDate = date("Y-m-d", $date);
+                // $checkoutDate = date("Y-m-d", strtotime("+2 days", $date));
+
+                $checkinDate = new DateTime(date("Y-m-d H:i", $date));
+
+                $checkoutDate = new DateTime(date("Y-m-d H:i", $date));
+                $checkoutDate->add(new DateInterval("P2D"));
+
+                $checkinDate->setTime(14,0,0);
+                $checkoutDate->setTime(11,0,0);
+
+                $checkinDate->format('Y-m-d H:i');
+                $checkoutDate->format('Y-m-d H:i');
+
                 // set data for polymorphic many to many pivot table
                 $pivot_data = [
                     'reservation_id' => $reservation->id,
+                    'reservable_id' => Residence::distinct('id')->pluck('id')->random(),
                     'reservable_type' => Residence::class,
-                    'reservable_id' => Residence::pluck('id')->random()
+                    'check_in' => $checkinDate,
+                    'check_out' => $checkoutDate               
                 ];
 
                 // populate polymorphic many to many pivot table
@@ -43,19 +65,15 @@ class GuestSeeder extends Seeder
                 // save residence to DB
                 $residence->save();
 
-                // get checkin and checkout dateTime
-                $dtCheckin = new DateTime($reservation->check_in);
-                $dtCheckout = new DateTime($reservation->check_out);
-
                 // calculate time difference in days
-                $diff = $dtCheckin->diff($dtCheckout)->format('%d');
+                $diff = $checkinDate->diff($checkoutDate)->format('%d');
 
 
                 // set invoice data
                 $invoice_data = [
                     'reservation_id' => $reservation->id,
-                    'invoice_date' => $reservation->check_out,
-                    'due_date' => date("Y-m-d", strtotime("+1 week", strtotime($reservation->check_out))),
+                    'invoice_date' => $checkoutDate,
+                    'due_date' => $checkoutDate->add(new DateInterval('P1W')),
                     'subtotal' => 0,
                     'tax_9' => 0,
                     'tax_21' => 0,

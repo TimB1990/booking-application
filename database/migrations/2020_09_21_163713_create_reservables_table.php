@@ -17,6 +17,8 @@ class CreateReservablesTable extends Migration
             $table->id();
             $table->foreignId('reservation_id')->constrained();
             $table->morphs('reservable');
+            $table->dateTime('check_in');
+            $table->dateTime('check_out');
             $table->unique(['reservable_type', 'reservable_id', 'reservation_id']);
         });
     }

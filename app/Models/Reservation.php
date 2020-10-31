@@ -23,15 +23,21 @@ class Reservation extends Model
     }
 
     public function residences(){
-        return $this->morphedByMany('App\Models\Residence', 'reservable');
+        return $this->morphedByMany('App\Models\Residence', 'reservable')->withPivot([
+            'check_in','check_out'
+        ]);
     }
 
     public function meetingsRooms(){
-        return $this->morphedByMany('App\Models\MeetingRoom', 'reservable');
+        return $this->morphedByMany('App\Models\MeetingRoom', 'reservable')->withPivot([
+            'check_in','check_out'
+        ]);
     }
 
     public function assets(){
-        return $this->morphedByMany('App\Models\Asset', 'reservable');
+        return $this->morphedByMany('App\Models\Asset', 'reservable')->withPivot([
+            'check_in','check_out'
+        ]);
     }
 
     public function services(){

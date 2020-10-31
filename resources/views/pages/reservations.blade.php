@@ -58,6 +58,7 @@
                 class="btn-default">Next Week
             </a>
         </div>
+
     </div>
 
 
@@ -67,7 +68,7 @@
             <td>#</td>
             @for($d = 0; $d < $days; $d++)
                 <td>
-                    {{ date('Y-m-d', strtotime( $week_start->format('Y-m-d') . ' +'. $d . ' days'))}}
+                    {{ date('D, M j, `y', strtotime( $week_start->format('Y-m-d') . ' +'. $d . ' days'))}}
                 </td>
             @endfor
         </tr>
@@ -78,18 +79,24 @@
                 <!-- content for vertical axis descriptions -->
                 <td>{{ $i + 1 }}</td>
                 @foreach($cells as $cell)
-                    @if($cell['no'] == ($i + 1))
+                    @if($cell['no'] == ($i + 1) && empty($cell['resv']))
                         <td>
-                            @if(json_encode($cell['taken'] == true ))
-                                @foreach($cell['resv'] as $resv)
-                                    <span class="taken">
-                                        ({{ $resv['id']}}) {{ $resv['name'] }} 
-                                        {{ $resv['check_in']}} - {{ $resv['check_out']}} 
-                                    </span>
-                                @endforeach
-                            @endif
+                            <!-- empty -->
                         </td>
                     @endif
+
+                    @if($cell['no'] == ($i + 1) && !empty($cell['resv']) && json_encode($cell['taken'] == true))
+                    @foreach($cell['resv'] as $resv)
+                    <td>
+                        <span class="taken">
+                            #{{ $resv['id']}} | {{ $resv['name'] }}, 
+                            {{ $resv['check_in']}} - {{ $resv['check_out']}} 
+                        </span>
+                    </td>
+
+                    @endforeach
+                    @endif
+
                 @endforeach
             </tr>
         @endfor
@@ -97,3 +104,12 @@
 </div>
 
 @endsection
+
+{{-- @if(json_encode($cell['taken'] == true ))
+@foreach($cell['resv'] as $resv)
+    <span class="taken">
+        #{{ $resv['id']}} | {{ $resv['name'] }}, 
+        {{ $resv['check_in']}} - {{ $resv['check_out']}} 
+    </span>
+@endforeach
+@endif --}}
