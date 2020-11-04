@@ -59,6 +59,10 @@
             </a>
         </div>
 
+        <div class="btn-panel-section">
+            <a class="btn-default" href="#">Create</a>
+        </div>
+
     </div>
 
 
@@ -104,12 +108,3 @@
 </div>
 
 @endsection
-
-{{-- @if(json_encode($cell['taken'] == true ))
-@foreach($cell['resv'] as $resv)
-    <span class="taken">
-        #{{ $resv['id']}} | {{ $resv['name'] }}, 
-        {{ $resv['check_in']}} - {{ $resv['check_out']}} 
-    </span>
-@endforeach
-@endif --}}

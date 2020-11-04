@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use DateInterval;
+use Carbon\CarbonPeriod;
 use App\Models\MeetingRoom;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ReservationController extends Controller
@@ -25,23 +27,15 @@ class ReservationController extends Controller
         $subject = $request->query('subject');
         $days = 7;
 
-        // retrieve start date of given week
-        $weekStart = new DateTime();
-
-        // set query string values as year and week
-        $weekStart->setIsoDate($year, $week);
-
-        // reset time to 14:00
-        $weekStart->setTime(0,0,0);
-
-        // calculate last day of next given week
-        // $WeekEnd = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $days . ' days'));
+        $date = new Carbon();
+        $date->setIsoDate($year, $week);
+        $weekStart = $date->startOfweek();
 
         // get reservations
         $reservations = Reservation::where([
             ['accommodation_id', $acc_id]
             // ,['check_in', '>=', $weekStart]
-            // ,['check_out', '<=', $WeekEnd]
+            // ,['check_out', '<=', $weekEnd]
         ])->get();
 
         // set values for data structure
@@ -62,61 +56,54 @@ class ReservationController extends Controller
         // initialize data structure
         $cells = [];
 
+        // $cellDate = $weekStart;
+
         // create data structure
         for ($i = 0; $i < $amount; $i++) {
             for ($d = 0; $d < $days; $d++) {
 
                 $no = $i + 1;
-
-                // $cellDate = date('Y-m-d', strtotime($weekStart->format('Y-m-d') . ' +' . $d . 'days'));
-                $cellDate = new DateTime($weekStart->format("Y-m-d H:i"));
-                $cellDate->add(new DateInterval("P". $d . "D"));
+                
+                // Carbon::parse($cellDate)->addDays($d);
+                $cellDate = Carbon::parse($weekStart)->addDay($d);
 
                 // define cell
                 $cell = [
+                    'd' => $d,
                     'no' => $i + 1,
-                    'day' => $d + 1,
-                    'date' => $cellDate,
+                    'date' => $cellDate->toDateTimeString(),
                     'taken' => false,
                     'resv' => []
                 ];
 
+
                 foreach ($reservations as $resv) {
-                    if (!empty($resv[$subject])) {
-                        foreach ($resv[$subject] as $sub) {
+                    if (empty($resv[$subject])) return;
+                    
 
-                            $checkinDt = new DateTime($sub->pivot->check_in);
+                    foreach ($resv[$subject] as $sub) {
 
-                            // for some weird reason subtracting 1D shows the beginning day
-                            $checkinDt->sub(new DateInterval('P1D'));
+                        // dd(CarbonPeriod::create($sub->pivot->check_in, Carbon::parse($sub->pivot->check_out)->addDays(1))->toArray());
 
+                        if (!($sub->id == $no && $cellDate->between(Carbon::parse($sub->pivot->check_in)->subDays(1), $sub->pivot->check_out))) continue;
 
-                            $checkoutDt = new DateTime($sub->pivot->check_out);
+                        $cell['taken'] = true;
 
-                            if ($sub->id == $no && $cellDate > $checkinDt && $cellDate < $checkoutDt ) {
+                        array_push($cell['resv'] , [
+                            'id' => $resv->id,
+                            'name' => $resv->guest->first_name[0] . '. ' . $resv->guest->last_name,
+                            'check_in' => Carbon::parse($sub->pivot->check_in)->format('M j'),
+                            'check_out' => Carbon::parse($sub->pivot->check_out)->format('M j')
+                        ]);
 
-                                // dd([
-                                //     'cell date' => $cellDate->format('Y-m-d H:i'),
-                                //     'checkin' => $checkinDt,
-                                //     'checkout' => $checkoutDt
-                                // ]);
-
-                                $cell['taken'] = true;
-
-                                array_push($cell['resv'] , [
-                                    'id' => $resv->id,
-                                    'name' => $resv->guest->first_name[0] . '. ' . $resv->guest->last_name,
-                                    'check_in' => date('m-d', strtotime($sub->pivot->check_in)),
-                                    'check_out' => date('m-d', strtotime($sub->pivot->check_out)),
-                                ]);
-                            }
-                        }
-                    }
+                    } 
                 }
 
                 array_push($cells, $cell);
             }
         }
+
+        // dd($cells);
 
 
         // return view with reservations data

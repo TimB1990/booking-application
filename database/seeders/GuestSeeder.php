@@ -9,6 +9,7 @@ use App\Models\Invoice;
 use App\Models\Residence;
 use App\Models\InvoiceLine;
 use App\Models\Reservation;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -28,21 +29,18 @@ class GuestSeeder extends Seeder
                 // generate checkin checkout logic
 
                 $daysAhead = rand(2,7);
-                $date = strtotime("+" . $daysAhead . " days");
+                // $date = strtotime("+" . $daysAhead . " days");
+                $checkinDate = Carbon::now()->addDays($daysAhead);
+                $checkoutDate = Carbon::parse($checkinDate)->addDays(2);
 
-                // $checkinDate = date("Y-m-d", $date);
-                // $checkoutDate = date("Y-m-d", strtotime("+2 days", $date));
-
-                $checkinDate = new DateTime(date("Y-m-d H:i", $date));
-
-                $checkoutDate = new DateTime(date("Y-m-d H:i", $date));
-                $checkoutDate->add(new DateInterval("P2D"));
+                // $checkoutDate = new DateTime(date("Y-m-d H:i", $date));
+                // $checkoutDate->add(new DateInterval("P2D"));
 
                 $checkinDate->setTime(14,0,0);
                 $checkoutDate->setTime(11,0,0);
 
-                $checkinDate->format('Y-m-d H:i');
-                $checkoutDate->format('Y-m-d H:i');
+                $checkinDate->toDateTimeString();
+                $checkoutDate->toDateTimestring();
 
                 // set data for polymorphic many to many pivot table
                 $pivot_data = [
@@ -73,7 +71,7 @@ class GuestSeeder extends Seeder
                 $invoice_data = [
                     'reservation_id' => $reservation->id,
                     'invoice_date' => $checkoutDate,
-                    'due_date' => $checkoutDate->add(new DateInterval('P1W')),
+                    'due_date' => $checkoutDate->addWeeks(1),
                     'subtotal' => 0,
                     'tax_9' => 0,
                     'tax_21' => 0,
