@@ -15,7 +15,6 @@ class GuestFactory extends Factory
     {
         return [
             'first_name' => $this->faker->firstName,
-            'insertion' => null,
             'last_name' => $this->faker->lastName,
             'country' => 'Netherlands',
             'postcode' => $this->faker->postcode,

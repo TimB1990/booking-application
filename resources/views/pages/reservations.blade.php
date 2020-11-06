@@ -43,11 +43,10 @@
                 class="btn-default">Previous Week
             </a>
             <!-- current weeks(s) -->
-            <span
-                style="margin-left:0.5rem;margin-right:0.5rem;">
+            <span style="margin-left:0.5rem;margin-right:0.5rem;">
 
                 @if($days == 7)
-                    {{ $week }}
+                {{ $week }}
                 @else
                 {{ $week . ' | ' . ($week < 52 ? $week + 1 : 1) }}
                 @endif
@@ -60,7 +59,7 @@
         </div>
 
         <div class="btn-panel-section">
-            <a class="btn-default" href="#">Create</a>
+            <a class="btn-default" href="{{ '/' . $accommodation->domain . '/dashboard/reservations/create'}}">Create</a>
         </div>
 
     </div>
@@ -70,9 +69,8 @@
         <!-- content for horizontal axis header -->
         <tr>
             <td>#</td>
-            @for($d = 0; $d < $days; $d++)
-                <td>
-                    {{ date('D, M j, `y', strtotime( $week_start->format('Y-m-d') . ' +'. $d . ' days'))}}
+            @for($d = 0; $d < $days; $d++) <td>
+                {{ date('D, M j, `y', strtotime( $week_start->format('Y-m-d') . ' +'. $d . ' days'))}}
                 </td>
             @endfor
         </tr>
@@ -83,24 +81,18 @@
                 <!-- content for vertical axis descriptions -->
                 <td>{{ $i + 1 }}</td>
                 @foreach($cells as $cell)
-                    @if($cell['no'] == ($i + 1) && empty($cell['resv']))
+                    @if($cell['no'] == ($i + 1))
                         <td>
-                            <!-- empty -->
+                            @if(!empty($cell['resv']) && json_encode($cell['taken'] == true))
+                                @foreach($cell['resv'] as $resv)
+                                    <span class="taken">
+                                        #{{ $resv['id']}} | {{ $resv['name'] }},
+                                        {{ $resv['check_in']}} - {{ $resv['check_out']}}
+                                    </span>
+                                @endforeach
+                            @endif
                         </td>
                     @endif
-
-                    @if($cell['no'] == ($i + 1) && !empty($cell['resv']) && json_encode($cell['taken'] == true))
-                    @foreach($cell['resv'] as $resv)
-                    <td>
-                        <span class="taken">
-                            #{{ $resv['id']}} | {{ $resv['name'] }}, 
-                            {{ $resv['check_in']}} - {{ $resv['check_out']}} 
-                        </span>
-                    </td>
-
-                    @endforeach
-                    @endif
-
                 @endforeach
             </tr>
         @endfor

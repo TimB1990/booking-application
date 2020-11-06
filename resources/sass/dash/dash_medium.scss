@@ -71,9 +71,6 @@
     }
 
     main {
-        position: relative;
-        height: 100vh - ($headerHeight + $footerHeight + $navHeight);
-
         .menu {
             position: absolute;
             top: 0;

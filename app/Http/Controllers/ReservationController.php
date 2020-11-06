@@ -114,9 +114,16 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function create()
+    public function create($domain)
     {
-        //
+        // retrieve accommodation information
+        $accommodation = Accommodation::where('domain', $domain)->first();
+
+        // return view
+        return view ('pages.dash-reservation-form', [
+            'accommodation' => $accommodation,
+            'title' => 'Add Reservation'
+        ]);
     }
 
 

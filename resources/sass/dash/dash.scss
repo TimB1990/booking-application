@@ -25,7 +25,12 @@ header{
 }
 
 main {
-    margin-bottom: $mainMargin;
+    position:fixed;
+    // height: 100vh - ($headerHeight + $footerHeight);
+    top: $headerHeight + $navHeight + 6.75vh;
+    bottom: $footerHeight;
+    height: auto;
+    width: 100%;
 }
 
 .footer{
@@ -72,6 +77,8 @@ main {
     display: block;
     background-color:red;
     padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid grey;
     font-weight: bold;
     text-align: center;
 }
@@ -85,6 +92,7 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    overflow-y: scroll;
 
     .info-table {
         font-size: 1.25rem;
