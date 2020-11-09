@@ -1,0 +1,85 @@
+<div class="reservation-forms">
+    <!-- forms left -->
+    <div class="reservation-forms-section">
+
+        <!-- search form -->
+        <form class="reservation-form">
+            <fieldset class="reservation-form-fieldset">
+                <legend>Search Guest</legend>
+                <div class="reservation-form-search">
+                    <i class="fa fa-search reservation-form-search__icon"></i>
+                    <input  wire:model.debounce.500ms="search" class="reservation-form-search__input" type="text" placeholder="Search guest..." />
+
+                    <div class="reservation-form-search__results">
+                        <span># Guest1</span>
+                        <span># Guest2</span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <!-- guest data form -->
+        <form action="#" class="reservation-form">
+            <fieldset class="reservation-form-fieldset">
+                <legend>Guest Data</legend>
+                <label for="fname">First name: </label>
+                <input wire:model.defer="guest.fname" id="fname" type="text" placeholder="first name">
+                <label for="lname">Last name: </label>
+                <input wire:model.defer="guest.lname" id="lname" type="text" placeholder="last name">
+                <label for="dob">Date of Birth: </label>
+                <input wire:model.defer="guest.dob" id="dob" type="date" placeholder="date of birth">
+                <label for="email">Email: </label>
+                <input wire:model.defer="guest.email" id="email" type="email" placeholder="email">
+                <label for="phone">Phone: </label>
+                <input wire:model.defer="guest.phone" id="phone" type="text" placeholder="telephone">
+                <label for="country">Country: </label>
+                <input wire:model.defer="guest.country" id="country" type="text" placeholder="country">
+                <label for="zip">Postcode/ZIP: </label>
+                <input wire:model.defer="guest.zip" id="zip" type="text" placeholder="postcode/zip">
+                <label for="nr">House number: </label>
+                <input wire:model.defer="guest.nr" id="nr" type="text" placeholder="house_nr">
+                <label for="street">Street name: </label>
+                <input wire:model.defer="guest.street" id="street" type="text" placeholder="street">
+                <label for="city">City: </label>
+                <input wire:model.defer="guest.city" id="city" type="text" placeholder="city">
+                <input type="submit" class="btn-default" value="Add Guest">
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- forms right -->
+    <div class="reservation-forms-section">
+        <!-- form section reservation -->
+        <form action="" class="reservation-form">
+            <fieldset class="reservation-form-fieldset">
+                <legend>Reservation</legend>
+                <label for="subject">Reservable Subject:</label>
+                <select name="subject" id="subject">
+                    <option value="residence">Residence</option>
+                    <option value="meeting-room">Meeting Room</option>
+                    <option value="asset">Reservable Asset</option>
+                </select>
+                <label for="">Check In: </label>
+                <input id="checkin" type="date" placeholder="Check In">
+                <label for="">Check Out: </label>
+                <input id="checkout" type="date" placeholder="check Out">
+                <input class="btn-default" type="submit" value="Add">
+            </fieldset>
+        </form>
+
+        <!-- dynamic forms -->
+        <form class="reservation-form">
+            <div>
+                <fieldset class="reservation-form-fieldset">
+                    <legend>dynamic</legend>
+                </fieldset>
+            </div>
+        </form>
+
+
+    </div>
+
+
+
+
+</div>

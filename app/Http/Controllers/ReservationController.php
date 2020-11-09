@@ -122,7 +122,7 @@ class ReservationController extends Controller
         // return view
         return view ('pages.dash-reservation-form', [
             'accommodation' => $accommodation,
-            'title' => 'Add Reservation'
+            'title' => 'Reservation Form'
         ]);
     }
 

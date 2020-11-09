@@ -702,45 +702,42 @@ main {
   stroke: #ff9f00;
 }
 
-.form {
+.reservation-form {
   display: flex;
   justify-content: space-between;
 }
 
-.form-section {
-  width: 45%;
-}
-
-.form-section-fieldset {
+.reservation-form-fieldset {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
   padding: 0.75rem;
   border: 1px solid grey;
   border-radius: 0.5rem;
+  width: 100%;
 }
 
-.form-section-search {
+.reservation-form-search {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.form-section-search__input {
+.reservation-form-search__input {
   text-indent: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.form-section-search__icon {
+.reservation-form-search__icon {
   position: absolute;
   color: grey;
   padding: 0.25rem;
-  left: 1rem;
-  top: 1rem;
+  left: 1.5rem;
+  top: 1.5rem;
   transform: translate(-50%, -50%);
 }
 
-.form-section-search__results {
+.reservation-form-search__results {
   display: none;
   border: 1px solid grey;
   padding: 0.75rem;
@@ -751,11 +748,11 @@ main {
   left: 0;
 }
 
-.form-section-search__results span {
+.reservation-form-search__results span {
   display: block;
 }
 
-.form input {
+.reservation-form input {
   background-color: #1a1a1a;
   padding: 0.5rem;
   border: 1px solid grey;
@@ -765,7 +762,7 @@ main {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form select {
+.reservation-form select {
   background-color: #1a1a1a;
   padding: 0.5rem 1rem;
   border: 1px solid grey;
@@ -774,8 +771,17 @@ main {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form label {
+.reservation-form label {
   padding: 0.5rem;
+}
+
+.reservation-forms-section {
+  width: 45%;
+}
+
+.reservation-forms {
+  display: flex;
+  justify-content: space-between;
 }
 
 body {

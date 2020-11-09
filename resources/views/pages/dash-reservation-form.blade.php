@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <livewire:add-reservation/>
+    <livewire:add-reservation/> 
 </div>
 
 @endsection
