@@ -738,18 +738,24 @@ main {
 }
 
 .reservation-form-search__results {
-  display: none;
   border: 1px solid grey;
-  padding: 0.75rem;
+  padding: 0.5rem;
   position: absolute;
   background-color: #0d0d0d;
   top: 2.25rem;
-  right: 0;
-  left: 0;
+  right: 1rem;
+  left: 1rem;
 }
 
 .reservation-form-search__results span {
   display: block;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.reservation-form-search__results span:hover {
+  color: black;
+  background-color: lightslategrey;
 }
 
 .reservation-form input {

@@ -22,7 +22,10 @@
             <input wire:model.defer="guest.street" id="street" type="text" placeholder="street">
             <label for="city">City: </label>
             <input wire:model.defer="guest.city" id="city" type="text" placeholder="city">
-            <input type="submit" class="btn-default" value="Add Guest">
+
+            @if(empty($guest) || $resetForm)
+                <input type="submit" class="btn-default" value="Add Guest">
+            @endif
         </fieldset>
-    </form>  
+    </form>
 </div>

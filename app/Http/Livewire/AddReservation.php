@@ -8,20 +8,6 @@ class AddReservation extends Component
 {
     public $search = '';
     
-    public $guest = [
-        'fname' => '',
-        'lname' => '',
-        'dob' => '',
-        'email' => '',
-        'phone' => '',
-        'country' => '',
-        'zip' => '',
-        'nr' => '',
-        'street' => '',
-        'city' => ''
-    ];
-
-
     public function mount(){
         // do something
     }
